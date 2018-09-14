@@ -1,9 +1,9 @@
+// @flow
+
 export type User = {
-    user: {
-        name: String,
-        location: String,
-        avatarURL: String,
-        repositoriesURL: String,
-        repositoriesNames: Array<String>,
-    }
+    name: string,
+    location: string,
+    avatarURL: string,
+    repositoriesURL: string,
+    repositoriesNames: Array<string>,
 }

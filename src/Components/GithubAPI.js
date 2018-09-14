@@ -5,15 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { User } from "../types/userType";
+import type { User } from "../types/userType";
 
 import styles from './GithubAPI.css';
 
 
 type Props = {};
-type State = {
-    user: User,
-};
+type State = User;
 
 class GithubAPI extends React.Component<Props, State> {
     input :?HTMLInputElement;
@@ -22,13 +20,11 @@ class GithubAPI extends React.Component<Props, State> {
         super(props);
 
         this.state = {
-            user: {
-                name: "",
-                location: "",
-                avatarURL: "",
-                repositoriesURL: "",
-                repositoriesNames: [],
-            }
+            name: "",
+            location: "",
+            avatarURL: "",
+            repositoriesURL: "",
+            repositoriesNames: [],
         }
     }
 
@@ -40,12 +36,11 @@ class GithubAPI extends React.Component<Props, State> {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    user: {
-                        name: data.name,
-                        location: data.location,
-                        avatarURL: data.avatar_url,
-                        reposURL: data.repos_url,
-                    }
+                    name: data.name,
+                    location: data.location,
+                    avatarURL: data.avatar_url,
+                    repositoriesURL: data.repos_url,
+                    repositoriesNames: [],
                 });
 
                 console.log(this.state);
