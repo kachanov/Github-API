@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
+import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 
 import type { User } from "../../types/userType";
 
@@ -34,6 +35,7 @@ class GithubAPI extends React.Component<Props, State> {
 
     getUserInfo = () => {
         const username = this.input.value;
+        const reposNames = [];
 
         fetch(`https://api.github.com/users/${username}`)
             .then(response => response.json())
@@ -42,12 +44,23 @@ class GithubAPI extends React.Component<Props, State> {
                     name: data.name,
                     location: data.location,
                     avatarURL: data.avatar_url,
-                    repositoriesURL: data.repos_url,
-                    repositoriesNames: [],
+                    repositoriesURL: data.repos_url
                 });
 
+                fetch(this.state.repositoriesURL)
+                    .then(response => response.json())
+                    .then(data => {
+                       data.map(repo => {
+                           reposNames.push(repo.name);
+                       });
+
+                       this.setState({
+                           repositoriesNames: reposNames,
+                       });
+                    });
+
                 console.log(this.state);
-            })
+            });
     };
 
      render() {
@@ -83,6 +96,9 @@ class GithubAPI extends React.Component<Props, State> {
                     </div>
                     <div>
                         {this.state.name && <UserInfo userName={this.state.name} location={this.state.location} />}
+                    </div>
+                    <div>
+                        <RepositoriesComponent repositoriesNames={this.state.repositoriesNames}/>
                     </div>
                 </div>
             </div>
