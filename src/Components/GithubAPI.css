@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+}
+
+:local(.searchButton) {
+    position: absolute;
+    left: 20px;
+}
+
+:local(.input) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
