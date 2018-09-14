@@ -4,6 +4,7 @@ import React from "react";
 
 import styles from "./Avatar.css";
 
+
 type Props = {
     avatarURL: string,
 };

@@ -82,7 +82,7 @@ class GithubAPI extends React.Component<Props, State> {
                         {this.state.avatarURL && <Avatar avatarURL={this.state.avatarURL} />}
                     </div>
                     <div>
-                        {this.state.name && <UserInfo userName={this.state.name} location={this.state.location}/>}
+                        {this.state.name && <UserInfo userName={this.state.name} location={this.state.location} />}
                     </div>
                 </div>
             </div>
