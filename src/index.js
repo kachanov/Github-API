@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import GithubAPI from './Components/GithubAPI';
+import GithubAPI from './Components/MainComponent/GithubAPI';
 
 
 const Root = document.getElementById("root");

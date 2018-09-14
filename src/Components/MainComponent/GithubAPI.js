@@ -5,7 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import type { User } from "../types/userType";
+import Avatar from "../Avatar/Avatar";
+import UserInfo from "../UserInfo/UserInfo";
+
+import type { User } from "../../types/userType";
 
 import styles from './GithubAPI.css';
 
@@ -73,6 +76,14 @@ class GithubAPI extends React.Component<Props, State> {
                     >
                         Search user
                     </Button>
+                </div>
+                <div className={styles.info}>
+                    <div>
+                        {this.state.avatarURL && <Avatar avatarURL={this.state.avatarURL} />}
+                    </div>
+                    <div>
+                        {this.state.name && <UserInfo userName={this.state.name} location={this.state.location}/>}
+                    </div>
                 </div>
             </div>
         );

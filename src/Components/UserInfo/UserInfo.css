@@ -1,0 +1,7 @@
+:local(.infoLabels) {
+    margin-top: 50px;
+}
+
+:local(.label) {
+    margin: 20px;
+}
