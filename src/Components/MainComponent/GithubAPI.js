@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
+import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
 import type { User } from "../../types/userType";
 
@@ -29,22 +30,30 @@ class GithubAPI extends React.Component<Props, State> {
             avatarURL: "",
             repositoriesURL: "",
             repositoriesNames: [],
+            isError: false,
         }
     }
-
 
     getUserInfo = () => {
         const username = this.input.value;
         const reposNames = [];
 
         fetch(`https://api.github.com/users/${username}`)
-            .then(response => response.json())
+            .then(response => {
+                console.log(response.headers.get("content-type"));
+                console.log(response);
+                if(response.status === 200) {
+                    return response.json();
+                }
+                throw new Error("Oops, we haven't got JSON!");
+            })
             .then(data => {
                 this.setState({
                     name: data.name,
                     location: data.location,
                     avatarURL: data.avatar_url,
-                    repositoriesURL: data.repos_url
+                    repositoriesURL: data.repos_url,
+                    isError: false,
                 });
 
                 fetch(this.state.repositoriesURL)
@@ -57,7 +66,9 @@ class GithubAPI extends React.Component<Props, State> {
                     });
             })
             .catch((error) => {
-                throw new Error(error);
+                this.setState({
+                    isError: true,
+                });
             });
     };
 
@@ -88,6 +99,7 @@ class GithubAPI extends React.Component<Props, State> {
                         Search user
                     </Button>
                 </div>
+                {this.state.isError ? <ErrorComponent /> :
                 <div className={styles.info}>
                     <div>
                         {this.state.avatarURL && <Avatar avatarURL={this.state.avatarURL} />}
@@ -101,7 +113,7 @@ class GithubAPI extends React.Component<Props, State> {
                             <RepositoriesComponent repositoriesNames={this.state.repositoriesNames}/>}
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         );
     }
