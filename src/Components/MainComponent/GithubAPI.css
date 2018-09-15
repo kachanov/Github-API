@@ -19,3 +19,8 @@ h1 {
     flex-direction: row;
     justify-content: center;
 }
+
+:local(.infoAndRepos) {
+    display: flex;
+    flex-direction: column;
+}

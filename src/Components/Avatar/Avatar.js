@@ -14,7 +14,7 @@ type State = {};
 class Avatar extends React.Component<Props, State> {
     render() {
         return(
-            <img src={this.props.avatarURL} className={styles.avatar} />
+            <img src={this.props.avatarURL} className={styles.avatar} alt="avatar" />
         );
     }
 }
