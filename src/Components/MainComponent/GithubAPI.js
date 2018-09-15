@@ -50,16 +50,14 @@ class GithubAPI extends React.Component<Props, State> {
                 fetch(this.state.repositoriesURL)
                     .then(response => response.json())
                     .then(data => {
-                       data.map(repo => {
-                           reposNames.push(repo.name);
-                       });
-
+                       data.map(repo => reposNames.push(repo.name));
                        this.setState({
                            repositoriesNames: reposNames,
                        });
                     });
-
-                console.log(this.state);
+            })
+            .catch((error) => {
+                throw new Error(error);
             });
     };
 
@@ -94,11 +92,14 @@ class GithubAPI extends React.Component<Props, State> {
                     <div>
                         {this.state.avatarURL && <Avatar avatarURL={this.state.avatarURL} />}
                     </div>
-                    <div>
-                        {this.state.name && <UserInfo userName={this.state.name} location={this.state.location} />}
-                    </div>
-                    <div>
-                        <RepositoriesComponent repositoriesNames={this.state.repositoriesNames}/>
+                    <div className={styles.infoAndRepos}>
+                        <div>
+                            {this.state.name && <UserInfo userName={this.state.name} location={this.state.location} />}
+                        </div>
+                        <div>
+                            {this.state.repositoriesNames.length > 0 &&
+                            <RepositoriesComponent repositoriesNames={this.state.repositoriesNames}/>}
+                        </div>
                     </div>
                 </div>
             </div>
