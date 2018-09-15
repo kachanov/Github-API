@@ -19,7 +19,7 @@ type Props = {};
 type State = User;
 
 class GithubAPI extends React.Component<Props, State> {
-    input :?HTMLInputElement;
+    input :HTMLInputElement;
 
     constructor(props: Props) {
         super(props);
