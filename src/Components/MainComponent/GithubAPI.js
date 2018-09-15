@@ -40,11 +40,10 @@ class GithubAPI extends React.Component<Props, State> {
 
         fetch(`https://api.github.com/users/${username}`)
             .then(response => {
-                console.log(response.headers.get("content-type"));
-                console.log(response);
                 if(response.status === 200) {
                     return response.json();
                 }
+
                 throw new Error("Oops, we haven't got JSON!");
             })
             .then(data => {
@@ -65,7 +64,7 @@ class GithubAPI extends React.Component<Props, State> {
                        });
                     });
             })
-            .catch((error) => {
+            .catch(() => {
                 this.setState({
                     isError: true,
                 });

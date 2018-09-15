@@ -2,9 +2,9 @@
 
 import React from "react";
 import ErrorIcon from '@material-ui/icons/Error';
+import Typography from "@material-ui/core/Typography";
 
 import styles from "./ErrorComponent.css";
-import Typography from "@material-ui/core/Typography";
 
 
 type Props = {};
