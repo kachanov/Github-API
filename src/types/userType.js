@@ -6,4 +6,5 @@ export type User = {
     avatarURL: string,
     repositoriesURL: string,
     repositoriesNames: Array<string>,
+    isError: boolean,
 }

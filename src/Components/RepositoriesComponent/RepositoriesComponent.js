@@ -11,6 +11,7 @@ import styles from "./RepositoriesComponent.css";
 type Props = {
     repositoriesNames: Array<string>,
 };
+
 type State = {};
 
 class RepositoriesComponent extends React.Component<Props, State> {
