@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { initialState } from "../store/store";
-import { FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE } from "../actions/actions";
+import { FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_USER_REPOSITORIES_SUCCESS } from "../actions/actions";
 
 export function store(state = { ...initialState }, action) {
     switch (action.type) {
@@ -33,6 +33,16 @@ export function store(state = { ...initialState }, action) {
                 userInfoRequest: false,
                 userInfoSuccess: false,
                 userInfoFailure: true,
+            };
+
+        case FETCH_USER_REPOSITORIES_SUCCESS:
+            console.log(action.payload);
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    repositoriesNames: action.payload,
+                }
             };
 
         default:

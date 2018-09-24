@@ -21,7 +21,7 @@ class RepositoriesComponent extends React.Component<Props, State> {
                 <List>
                     {this.props.repositoriesNames.map(repo => {
                         return <ListItem button>
-                            <ListItemText inset primary={repo} />
+                            <ListItemText inset primary={repo.name} />
                         </ListItem>
                     })}
                 </List>
