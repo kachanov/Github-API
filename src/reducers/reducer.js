@@ -1,6 +1,13 @@
 import { combineReducers } from "redux";
 import { initialState } from "../store/store";
-import { FETCH_USER_INFO_REQUEST, FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_USER_REPOSITORIES_SUCCESS } from "../actions/actions";
+import {
+    FETCH_USER_INFO_REQUEST,
+    FETCH_USER_INFO_SUCCESS,
+    FETCH_USER_INFO_FAILURE,
+    FETCH_USER_REPOSITORIES_SUCCESS,
+    FETCH_USER_REPOSITORIES_REQUEST,
+    FETCH_USER_REPOSITORIES_FAILURE
+} from "../actions/actions";
 
 export function store(state = { ...initialState }, action) {
     switch (action.type) {
@@ -35,13 +42,32 @@ export function store(state = { ...initialState }, action) {
                 userInfoFailure: true,
             };
 
+        case FETCH_USER_REPOSITORIES_REQUEST:
+            return {
+                ...state,
+                userReposRequest: true,
+                userReposSuccess: false,
+                userReposFailure: false,
+            };
+
         case FETCH_USER_REPOSITORIES_SUCCESS:
             return {
                 ...state,
+                userReposRequest: false,
+                userReposSuccess: true,
+                userReposFailure: false,
                 userData: {
                     ...state.userData,
                     repositoriesNames: action.payload,
                 }
+            };
+
+        case FETCH_USER_REPOSITORIES_FAILURE:
+            return {
+                ...state,
+                userReposRequest: false,
+                userReposSuccess: false,
+                userReposFailure: true,
             };
 
         default:

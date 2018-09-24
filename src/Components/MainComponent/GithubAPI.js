@@ -12,7 +12,7 @@ import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
-import { fetchUsersWithRedux } from "../../actions/actions";
+import { fetchUserInfo } from "../../actions/actions";
 
 import type { storeType } from "../../types/storeType";
 
@@ -20,7 +20,7 @@ import styles from './GithubAPI.css';
 
 
 type Props = {
-    fetchUsersWithRedux: (username: string) => void,
+    fetchUserInfo: (username: string) => void,
     store: storeType,
 };
 
@@ -35,11 +35,10 @@ class GithubAPI extends React.Component<Props> {
 
     getUserInfo = () => {
         const username = this.input.value;
-        this.props.fetchUsersWithRedux(username);
+        this.props.fetchUserInfo(username);
     };
 
      render() {
-        console.log(this.props);
         let { store } = this.props;
         return (
             <div>
@@ -76,11 +75,12 @@ class GithubAPI extends React.Component<Props> {
                     </div>
                     <div className={styles.infoAndRepos}>
                         <div>
-                            {store.userData.name && <UserInfo userName={store.userData.name} location={store.userData.location} />}
+                            {store.userData.name &&
+                            <UserInfo username={store.userData.name} location={store.userData.location} />}
                         </div>
                         <div>
                             {store.userData.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={store.userData.repositoriesNames}/>}
+                            <RepositoriesComponent repositoriesNames={store.userData.repositoriesNames} />}
                         </div>
                     </div>
                 </div>}
@@ -94,7 +94,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchUsersWithRedux: params => dispatch(fetchUsersWithRedux(params)),
+    fetchUserInfo: params => dispatch(fetchUserInfo(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GithubAPI);

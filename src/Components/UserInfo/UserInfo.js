@@ -1,6 +1,7 @@
 // @flow
 
 import React from "react";
+import PropTypes from "prop-types";
 import Typography from '@material-ui/core/Typography';
 import LocationIcon from '@material-ui/icons/LocationOn';
 
@@ -8,7 +9,7 @@ import styles from "./UserInfo.css";
 
 
 type Props = {
-    userName: string,
+    username: string,
     location: string,
 };
 
@@ -20,7 +21,7 @@ class UserInfo extends React.Component<Props, State> {
           <div className={styles.infoLabels}>
               <div className={styles.label}>
                 <Typography variant="headline">
-                    Name: {this.props.userName}
+                    Name: {this.props.username}
                 </Typography>
               </div>
               <div className={styles.label}>
@@ -32,5 +33,10 @@ class UserInfo extends React.Component<Props, State> {
         );
     }
 }
+
+UserInfo.propTypes = {
+    username: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+};
 
 export default UserInfo;

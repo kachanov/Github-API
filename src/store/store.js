@@ -8,6 +8,9 @@ export const initialState = {
     userInfoRequest: false,
     userInfoSuccess: false,
     userInfoFailure: false,
+    userReposRequest: false,
+    userReposSuccess: false,
+    userReposFailure: false,
     userData: {
         name: "",
         location: "",

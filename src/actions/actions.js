@@ -44,7 +44,7 @@ export const fetchUserRepositoriesFailure = () => {
     }
 };
 
-export const fetchUsersWithRedux = (username: string) => async (dispatch: Function) => {
+export const fetchUserInfo = (username: string) => async (dispatch: Function) => {
     const url = `https://api.github.com/users/${username}`;
     const reposUrl = `https://api.github.com/users/${username}/repos`;
     fetch(url)

@@ -1,8 +1,10 @@
 // @flow
 
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./Avatar.css";
+import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 
 
 type Props = {
@@ -18,5 +20,10 @@ class Avatar extends React.Component<Props, State> {
         );
     }
 }
+
+Avatar.propTypes = {
+    avatarURL: PropTypes.array.isRequired,
+};
+
 
 export default Avatar;
