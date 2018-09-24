@@ -24,5 +24,4 @@ Avatar.propTypes = {
     avatarURL: PropTypes.string.isRequired,
 };
 
-
 export default Avatar;
