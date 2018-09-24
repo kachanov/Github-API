@@ -49,18 +49,9 @@ export const fetchUserInfo = (username: string) => async (dispatch: Function) =>
     const reposUrl = `https://api.github.com/users/${username}/repos`;
     fetch(url)
         .then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
-
-            throw new Error("Oops, we haven't got JSON!");
+            dispatch(fetchUserInfoRequest());
+            return response;
         })
-        .then(data => {
-            dispatch(fetchUserInfoSuccess(data));
-        })
-        .catch(error => dispatch(fetchUserInfoFailure()));
-
-    fetch(reposUrl)
         .then(response => {
             if (response.status === 200) {
                 return response.json();
@@ -69,7 +60,24 @@ export const fetchUserInfo = (username: string) => async (dispatch: Function) =>
             throw new Error("Error");
         })
         .then(data => {
-            dispatch(fetchUserRepositoriesSuccess(data))
+            dispatch(fetchUserInfoSuccess(data));
         })
-        .catch(error => dispatch(fetchUserRepositoriesFailure()))
+        .catch(error => dispatch(fetchUserInfoFailure()));
+
+    fetch(reposUrl)
+        .then(response => {
+            dispatch(fetchUserRepositoriesRequest());
+            return response;
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            }
+
+            throw new Error("Error");
+        })
+        .then(data => {
+            dispatch(fetchUserRepositoriesSuccess(data));
+        })
+        .catch(error => dispatch(fetchUserRepositoriesFailure()));
 };
