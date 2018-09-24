@@ -28,26 +28,13 @@ type State = User;
 class GithubAPI extends React.Component<Props, State> {
     input :HTMLInputElement;
 
-    constructor(props: Props) {
-        super(props);
-
-        this.state = {
-            name: "",
-            location: "",
-            avatarURL: "",
-            repositoriesURL: "",
-            repositoriesNames: [],
-            isError: false,
-        }
-    }
-
     getUserInfo = () => {
         const username = this.input.value;
         this.props.fetchUsersWithRedux(username);
     };
 
      render() {
-         console.log(this.props);
+        console.log(this.props);
         return (
             <div>
                 <div>

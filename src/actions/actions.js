@@ -1,5 +1,4 @@
-import axios from "axios";
-
+// @flow
 export const FETCH_USER_INFO_REQUEST = "FETCH_USER_INFO_REQUEST";
 export const FETCH_USER_INFO_SUCCESS = "FETCH_USER_INFO_SUCCESS";
 export const FETCH_USER_INFO_FAILURE = "FETCH_USER_INFO_FAILURE";
@@ -10,7 +9,7 @@ export const fetchUserInfoRequest = () => {
     }
 };
 
-export const fetchUserInfoSuccess = (data) => {
+export const fetchUserInfoSuccess = (data: Object) => {
     return {
         type: FETCH_USER_INFO_SUCCESS,
         payload: data,
@@ -23,7 +22,7 @@ export const fetchUserInfoFailure = () => {
     }
 };
 
-export const fetchUsersWithRedux = username => async dispatch => {
+export const fetchUsersWithRedux = (username: string) => async (dispatch: Function) => {
     const url = `https://api.github.com/users/${username}`;
     fetch(url)
         .then(response => {
@@ -35,8 +34,6 @@ export const fetchUsersWithRedux = username => async dispatch => {
         })
         .then(data => {
             dispatch(fetchUserInfoSuccess(data));
-            fetch(data.repos_url)
-                .then(data => dispatch(fetchUserInfoSuccess(data)))
         })
         .catch(error => dispatch(fetchUserInfoFailure()));
 };

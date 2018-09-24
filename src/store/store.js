@@ -1,8 +1,8 @@
 // @flow
-import {applyMiddleware, createStore} from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 
-import {reducers} from "../reducers/reducer";
+import { reducers } from "../reducers/reducer";
 
 export const initialState = {
     userInfoRequest: false,
