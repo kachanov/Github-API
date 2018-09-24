@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react';
+import { connect } from 'react-redux';
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -10,68 +12,35 @@ import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
-import type { User } from "../../types/userType";
+import { fetchUserInfo } from "../../actions/actions";
+
+import type { storeType } from "../../types/storeType";
 
 import styles from './GithubAPI.css';
 
 
-type Props = {};
-type State = User;
+type Props = {
+    fetchUserInfo: (username: string) => void,
+    store: storeType,
+};
 
-class GithubAPI extends React.Component<Props, State> {
+class GithubAPI extends React.Component<Props> {
     input :HTMLInputElement;
 
-    constructor(props: Props) {
-        super(props);
-
-        this.state = {
-            name: "",
-            location: "",
-            avatarURL: "",
-            repositoriesURL: "",
-            repositoriesNames: [],
-            isError: false,
+    handleEnterPress = event => {
+        if (event.keyCode === 13) {
+            this.getUserInfo();
         }
-    }
+    };
 
     getUserInfo = () => {
         const username = this.input.value;
-        const reposNames = [];
-
-        fetch(`https://api.github.com/users/${username}`)
-            .then(response => {
-                if(response.status === 200) {
-                    return response.json();
-                }
-
-                throw new Error("Oops, we haven't got JSON!");
-            })
-            .then(data => {
-                this.setState({
-                    name: data.name,
-                    location: data.location,
-                    avatarURL: data.avatar_url,
-                    repositoriesURL: data.repos_url,
-                    isError: false,
-                });
-
-                fetch(this.state.repositoriesURL)
-                    .then(response => response.json())
-                    .then(data => {
-                       data.map(repo => reposNames.push(repo.name));
-                       this.setState({
-                           repositoriesNames: reposNames,
-                       });
-                    });
-            })
-            .catch(() => {
-                this.setState({
-                    isError: true,
-                });
-            });
+        this.props.fetchUserInfo(username);
     };
 
      render() {
+         console.log(this.props);
+        let { store } = this.props;
         return (
             <div>
                 <div>
@@ -88,28 +57,31 @@ class GithubAPI extends React.Component<Props, State> {
                         type="text"
                         placeholder="Enter a username"
                         inputRef={input => (this.input = input)}
+                        onKeyUp={this.handleEnterPress}
                     />
                     <Button
                         variant="contained"
                         color="primary"
                         className={styles.searchButton}
                         onClick={this.getUserInfo}
+
                     >
-                        Search user
+                        Search users
                     </Button>
                 </div>
-                {this.state.isError ? <ErrorComponent /> :
+                {store.userInfoFailure ? <ErrorComponent /> :
                 <div className={styles.info}>
                     <div>
-                        {this.state.avatarURL && <Avatar avatarURL={this.state.avatarURL} />}
+                        {store.userData.avatarURL && <Avatar avatarURL={store.userData.avatarURL} />}
                     </div>
                     <div className={styles.infoAndRepos}>
                         <div>
-                            {this.state.name && <UserInfo userName={this.state.name} location={this.state.location} />}
+                            {store.userData.name &&
+                            <UserInfo username={store.userData.name} location={store.userData.location} />}
                         </div>
                         <div>
-                            {this.state.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={this.state.repositoriesNames}/>}
+                            {store.userData.repositoriesNames.length > 0 &&
+                            <RepositoriesComponent repositoriesNames={store.userData.repositoriesNames} />}
                         </div>
                     </div>
                 </div>}
@@ -118,4 +90,12 @@ class GithubAPI extends React.Component<Props, State> {
     }
 }
 
-export default GithubAPI;
+const mapStateToProps = state => ({
+    store: state.store,
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchUserInfo: params => dispatch(fetchUserInfo(params)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GithubAPI);
