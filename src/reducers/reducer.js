@@ -36,7 +36,6 @@ export function store(state = { ...initialState }, action) {
             };
 
         case FETCH_USER_REPOSITORIES_SUCCESS:
-            console.log(action.payload);
             return {
                 ...state,
                 userData: {

@@ -14,19 +14,24 @@ import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
 import { fetchUsersWithRedux } from "../../actions/actions";
 
-import type { User } from "../../types/userType";
+import type { storeType } from "../../types/storeType";
 
 import styles from './GithubAPI.css';
 
 
 type Props = {
     fetchUsersWithRedux: (username: string) => void,
+    store: storeType,
 };
 
-type State = User;
-
-class GithubAPI extends React.Component<Props, State> {
+class GithubAPI extends React.Component<Props> {
     input :HTMLInputElement;
+
+    handleEnterPress = event => {
+        if (event.keyCode === 13) {
+            this.getUserInfo();
+        }
+    };
 
     getUserInfo = () => {
         const username = this.input.value;
@@ -35,6 +40,7 @@ class GithubAPI extends React.Component<Props, State> {
 
      render() {
         console.log(this.props);
+        let { store } = this.props;
         return (
             <div>
                 <div>
@@ -51,28 +57,30 @@ class GithubAPI extends React.Component<Props, State> {
                         type="text"
                         placeholder="Enter a username"
                         inputRef={input => (this.input = input)}
+                        onKeyUp={this.handleEnterPress}
                     />
                     <Button
                         variant="contained"
                         color="primary"
                         className={styles.searchButton}
                         onClick={this.getUserInfo}
+
                     >
                         Search users
                     </Button>
                 </div>
-                {this.props.store.userInfoFailure ? <ErrorComponent /> :
+                {store.userInfoFailure ? <ErrorComponent /> :
                 <div className={styles.info}>
                     <div>
-                        {this.props.store.userData.avatarURL && <Avatar avatarURL={this.props.store.userData.avatarURL} />}
+                        {store.userData.avatarURL && <Avatar avatarURL={store.userData.avatarURL} />}
                     </div>
                     <div className={styles.infoAndRepos}>
                         <div>
-                            {this.props.store.userData.name && <UserInfo userName={this.props.store.userData.name} location={this.props.store.userData.location} />}
+                            {store.userData.name && <UserInfo userName={store.userData.name} location={store.userData.location} />}
                         </div>
                         <div>
-                            {this.props.store.userData.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={this.props.store.userData.repositoriesNames}/>}
+                            {store.userData.repositoriesNames.length > 0 &&
+                            <RepositoriesComponent repositoriesNames={store.userData.repositoriesNames}/>}
                         </div>
                     </div>
                 </div>}
@@ -88,6 +96,5 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchUsersWithRedux: params => dispatch(fetchUsersWithRedux(params)),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(GithubAPI);
