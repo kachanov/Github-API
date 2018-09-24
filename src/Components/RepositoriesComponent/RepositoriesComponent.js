@@ -9,7 +9,7 @@ import styles from "./RepositoriesComponent.css";
 
 
 type Props = {
-    repositoriesNames: Array<string>,
+    repositoriesNames: Array<Object>,
 };
 
 type State = {};

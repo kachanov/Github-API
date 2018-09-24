@@ -59,6 +59,7 @@ export const fetchUsersWithRedux = (username: string) => async (dispatch: Functi
             dispatch(fetchUserInfoSuccess(data));
         })
         .catch(error => dispatch(fetchUserInfoFailure()));
+
     fetch(reposUrl)
         .then(response => {
             if (response.status === 200) {
@@ -72,40 +73,3 @@ export const fetchUsersWithRedux = (username: string) => async (dispatch: Functi
         })
         .catch(error => dispatch(fetchUserRepositoriesFailure()))
 };
-
-
-/*export const fetchUsersWithRedux = username => async dispatch => {
-    try {
-        const url = `https://api.github.com/users/${username}`;
-        const response = await fetch(url);
-        const responseBody = await response.json();
-        dispatch(fetchUserInfoSuccess(responseBody));
-    } catch (error) {
-        console.log("dispatch error");
-        dispatch(fetchUserInfoFailure());
-    }
-};*/
-
-/*
-function fetchUser() {
-    const URL = "https://api.github.com/users/Kachanov";
-    return fetch(URL, { method: 'GET'})
-        .then( response => Promise.all([response, response.json()]));
-}
-*/
-
-/*
-*
-export const fetchUsersWithRedux = () => {
-    return (dispatch) => {
-        dispatch(fetchUserInfoRequest());
-        return fetchUser().then(([response, json]) => {
-            if (response.status === 200) {
-                dispatch(fetchUserInfoSuccess(json))
-            }
-            else {
-                dispatch(fetchUserInfoFailure());
-            }
-        })
-    }
-};*/

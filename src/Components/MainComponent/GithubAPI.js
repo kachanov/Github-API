@@ -61,18 +61,18 @@ class GithubAPI extends React.Component<Props, State> {
                         Search users
                     </Button>
                 </div>
-                {this.props.store.store.userInfoFailure ? <ErrorComponent /> :
+                {this.props.store.userInfoFailure ? <ErrorComponent /> :
                 <div className={styles.info}>
                     <div>
-                        {this.props.store.store.userData.avatarURL && <Avatar avatarURL={this.props.store.store.userData.avatarURL} />}
+                        {this.props.store.userData.avatarURL && <Avatar avatarURL={this.props.store.userData.avatarURL} />}
                     </div>
                     <div className={styles.infoAndRepos}>
                         <div>
-                            {this.props.store.store.userData.name && <UserInfo userName={this.props.store.store.userData.name} location={this.props.store.store.userData.location} />}
+                            {this.props.store.userData.name && <UserInfo userName={this.props.store.userData.name} location={this.props.store.userData.location} />}
                         </div>
                         <div>
-                            {this.props.store.store.userData.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={this.props.store.store.userData.repositoriesNames}/>}
+                            {this.props.store.userData.repositoriesNames.length > 0 &&
+                            <RepositoriesComponent repositoriesNames={this.props.store.userData.repositoriesNames}/>}
                         </div>
                     </div>
                 </div>}
@@ -82,8 +82,7 @@ class GithubAPI extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-    store: state,
-    userData: state.userData,
+    store: state.store,
 });
 
 const mapDispatchToProps = dispatch => ({
