@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react';
+import { connect } from 'react-redux';
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -10,12 +12,17 @@ import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 
+import { fetchUsersWithRedux } from "../../actions/actions";
+
 import type { User } from "../../types/userType";
 
 import styles from './GithubAPI.css';
 
 
-type Props = {};
+type Props = {
+    fetchUsersWithRedux: (username: string) => void,
+};
+
 type State = User;
 
 class GithubAPI extends React.Component<Props, State> {
@@ -36,42 +43,11 @@ class GithubAPI extends React.Component<Props, State> {
 
     getUserInfo = () => {
         const username = this.input.value;
-        const reposNames = [];
-
-        fetch(`https://api.github.com/users/${username}`)
-            .then(response => {
-                if(response.status === 200) {
-                    return response.json();
-                }
-
-                throw new Error("Oops, we haven't got JSON!");
-            })
-            .then(data => {
-                this.setState({
-                    name: data.name,
-                    location: data.location,
-                    avatarURL: data.avatar_url,
-                    repositoriesURL: data.repos_url,
-                    isError: false,
-                });
-
-                fetch(this.state.repositoriesURL)
-                    .then(response => response.json())
-                    .then(data => {
-                       data.map(repo => reposNames.push(repo.name));
-                       this.setState({
-                           repositoriesNames: reposNames,
-                       });
-                    });
-            })
-            .catch(() => {
-                this.setState({
-                    isError: true,
-                });
-            });
+        this.props.fetchUsersWithRedux(username);
     };
 
      render() {
+         console.log(this.props);
         return (
             <div>
                 <div>
@@ -95,21 +71,21 @@ class GithubAPI extends React.Component<Props, State> {
                         className={styles.searchButton}
                         onClick={this.getUserInfo}
                     >
-                        Search user
+                        Search users
                     </Button>
                 </div>
-                {this.state.isError ? <ErrorComponent /> :
+                {this.props.store.store.userInfoFailure ? <ErrorComponent /> :
                 <div className={styles.info}>
                     <div>
-                        {this.state.avatarURL && <Avatar avatarURL={this.state.avatarURL} />}
+                        {this.props.store.store.userData.avatarURL && <Avatar avatarURL={this.props.store.store.userData.avatarURL} />}
                     </div>
                     <div className={styles.infoAndRepos}>
                         <div>
-                            {this.state.name && <UserInfo userName={this.state.name} location={this.state.location} />}
+                            {this.props.store.store.userData.name && <UserInfo userName={this.props.store.store.userData.name} location={this.props.store.store.userData.location} />}
                         </div>
                         <div>
-                            {this.state.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={this.state.repositoriesNames}/>}
+                            {this.props.store.store.userData.repositoriesNames.length > 0 &&
+                            <RepositoriesComponent repositoriesNames={this.props.store.store.userData.repositoriesNames}/>}
                         </div>
                     </div>
                 </div>}
@@ -118,4 +94,14 @@ class GithubAPI extends React.Component<Props, State> {
     }
 }
 
-export default GithubAPI;
+const mapStateToProps = state => ({
+    store: state,
+    userData: state.userData,
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchUsersWithRedux: params => dispatch(fetchUsersWithRedux(params)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GithubAPI);
