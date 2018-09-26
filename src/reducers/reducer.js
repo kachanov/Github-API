@@ -1,5 +1,10 @@
+// @flow
+
 import { combineReducers } from "redux";
+
 import { initialState } from "../store/store";
+import type { storeType } from "../types/storeType";
+import type { actionType } from "../types/actionType";
 import {
     FETCH_USER_INFO_REQUEST,
     FETCH_USER_INFO_SUCCESS,
@@ -7,9 +12,9 @@ import {
     FETCH_USER_REPOSITORIES_SUCCESS,
     FETCH_USER_REPOSITORIES_REQUEST,
     FETCH_USER_REPOSITORIES_FAILURE
-} from "../actions/actions";
+} from "../constants/actionNames";
 
-export function store(state = { ...initialState }, action) {
+export function store(state: storeType = { ...initialState }, action: actionType) {
     switch (action.type) {
         case FETCH_USER_INFO_REQUEST:
             return {

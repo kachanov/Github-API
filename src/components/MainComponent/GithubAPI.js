@@ -34,12 +34,11 @@ class GithubAPI extends React.Component<Props> {
     };
 
     getUserInfo = () => {
-        const username = this.input.value;
-        this.props.fetchUserInfo(username);
+        this.props.fetchUserInfo(this.input.value);
     };
 
      render() {
-         console.log(this.props);
+        console.log(this.props);
         let { store } = this.props;
         return (
             <div>
@@ -64,7 +63,6 @@ class GithubAPI extends React.Component<Props> {
                         color="primary"
                         className={styles.searchButton}
                         onClick={this.getUserInfo}
-
                     >
                         Search users
                     </Button>
