@@ -31,11 +31,11 @@ export function store(state: storeType = { ...initialState }, action: actionType
                 userInfoSuccess: true,
                 userInfoFailure: false,
                 userData: {
+                    ...state.userData,
                     name: action.payload.name,
                     location: action.payload.location,
                     avatarURL: action.payload.avatar_url,
                     repositoriesURL: action.payload.repos_url,
-                    repositoriesNames: [],
                 }
             };
 
