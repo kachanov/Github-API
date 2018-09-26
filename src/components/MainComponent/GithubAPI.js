@@ -57,6 +57,7 @@ class GithubAPI extends React.Component<Props> {
                         placeholder="Enter a username"
                         inputRef={input => (this.input = input)}
                         onKeyUp={this.handleEnterPress}
+                        autoFocus
                     />
                     <Button
                         variant="contained"
