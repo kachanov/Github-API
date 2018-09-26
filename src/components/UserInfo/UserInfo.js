@@ -2,6 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+
 import Typography from '@material-ui/core/Typography';
 import LocationIcon from '@material-ui/icons/LocationOn';
 
@@ -26,7 +27,7 @@ class UserInfo extends React.Component<Props, State> {
               </div>
               <div className={styles.label}>
                 <Typography variant="headline">
-                    <LocationIcon /> Location: {this.props.location}
+                    <LocationIcon /> Location: {this.props.location ? this.props.location : "Unknown"}
                 </Typography>
               </div>
           </div>
