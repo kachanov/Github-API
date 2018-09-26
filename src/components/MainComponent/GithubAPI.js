@@ -38,7 +38,6 @@ class GithubAPI extends React.Component<Props> {
     };
 
      render() {
-        console.log(this.props);
         let { store } = this.props;
         return (
             <div>
