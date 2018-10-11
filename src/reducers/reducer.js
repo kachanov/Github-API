@@ -36,6 +36,7 @@ export function store(state: storeType = { ...initialState }, action: actionType
                     location: action.payload.location,
                     avatarURL: action.payload.avatar_url,
                     repositoriesURL: action.payload.repos_url,
+                    createdAt: new Date(action.payload.created_at).toLocaleDateString(),
                 }
             };
 
@@ -50,17 +51,17 @@ export function store(state: storeType = { ...initialState }, action: actionType
         case FETCH_USER_REPOSITORIES_REQUEST:
             return {
                 ...state,
-                userReposRequest: true,
-                userReposSuccess: false,
-                userReposFailure: false,
+                userRepositoriesRequest: true,
+                userRepositoriesSuccess: false,
+                userRepositoriesFailure: false,
             };
 
         case FETCH_USER_REPOSITORIES_SUCCESS:
             return {
                 ...state,
-                userReposRequest: false,
-                userReposSuccess: true,
-                userReposFailure: false,
+                userRepositoriesRequest: false,
+                userRepositoriesSuccess: true,
+                userRepositoriesFailure: false,
                 userData: {
                     ...state.userData,
                     repositoriesNames: action.payload,
@@ -70,9 +71,9 @@ export function store(state: storeType = { ...initialState }, action: actionType
         case FETCH_USER_REPOSITORIES_FAILURE:
             return {
                 ...state,
-                userReposRequest: false,
-                userReposSuccess: false,
-                userReposFailure: true,
+                userRepositoriesRequest: false,
+                userRepositoriesSuccess: false,
+                userRepositoriesFailure: true,
             };
 
         default:

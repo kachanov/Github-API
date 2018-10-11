@@ -12,6 +12,7 @@ import styles from "./UserInfo.css";
 type Props = {
     username: string,
     location: string,
+    createdAt: string,
 };
 
 type State = {};
@@ -30,6 +31,11 @@ class UserInfo extends React.Component<Props, State> {
                     <LocationIcon /> Location: {this.props.location ? this.props.location : "Unknown"}
                 </Typography>
               </div>
+              <div className={styles.label}>
+                <Typography variant="headline">
+                    Created At: {this.props.createdAt}
+                </Typography>
+              </div>
           </div>
         );
     }
@@ -38,6 +44,7 @@ class UserInfo extends React.Component<Props, State> {
 UserInfo.propTypes = {
     username: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
+    craetedAt: PropTypes.string.isRequired,
 };
 
 export default UserInfo;
