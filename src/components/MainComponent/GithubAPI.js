@@ -39,6 +39,7 @@ class GithubAPI extends React.Component<Props> {
 
      render() {
         let { store } = this.props;
+        console.log(this.props);
         return (
             <div>
                 <div>
@@ -75,7 +76,11 @@ class GithubAPI extends React.Component<Props> {
                     <div className={styles.infoAndRepos}>
                         <div>
                             {store.userData.name &&
-                            <UserInfo username={store.userData.name} location={store.userData.location} />}
+                            <UserInfo 
+                                username={store.userData.name}
+                                location={store.userData.location}
+                                createdAt={store.userData.createdAt}
+                            />}
                         </div>
                         <div>
                             {store.userData.repositoriesNames.length > 0 &&

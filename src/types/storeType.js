@@ -10,5 +10,6 @@ export type storeType = {
         avatarURL: string,
         repositoriesURL: string,
         repositoriesNames: Array<Object>,
+        createdAt: string,
     },
 };

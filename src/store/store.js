@@ -5,19 +5,22 @@ import thunk from 'redux-thunk';
 
 import { reducers } from "../reducers/reducer";
 
+// TODO createdAt
+
 export const initialState = {
     userInfoRequest: false,
     userInfoSuccess: false,
     userInfoFailure: false,
-    userReposRequest: false,
-    userReposSuccess: false,
-    userReposFailure: false,
+    userRepositoriesRequest: false,
+    userRepositoriesSuccess: false,
+    userRepositoriesFailure: false,
     userData: {
         name: "",
         location: "",
         avatarURL: "",
         repositoriesURL: "",
         repositoriesNames: [],
+        createdAt: "",
     }
 };
 
