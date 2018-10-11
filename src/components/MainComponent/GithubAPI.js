@@ -55,6 +55,7 @@ class GithubAPI extends React.Component<Props> {
                     <TextField
                         type="text"
                         placeholder="Enter a username"
+                        spellCheck={false}
                         inputRef={input => (this.input = input)}
                         onKeyUp={this.handleEnterPress}
                         autoFocus
