@@ -25,8 +25,6 @@ export function store(state: storeType = { ...initialState }, action: actionType
             };
 
         case FETCH_USER_INFO_SUCCESS:
-            let createdAt = new Date(action.payload.created_at);
-            
             return {
                 ...state,
                 userInfoRequest: false,
@@ -38,7 +36,7 @@ export function store(state: storeType = { ...initialState }, action: actionType
                     location: action.payload.location,
                     avatarURL: action.payload.avatar_url,
                     repositoriesURL: action.payload.repos_url,
-                    createdAt: createdAt.toLocaleDateString(),
+                    createdAt: new Date(action.payload.created_at).toLocaleDateString(),
                 }
             };
 
