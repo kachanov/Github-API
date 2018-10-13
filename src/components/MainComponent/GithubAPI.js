@@ -23,6 +23,8 @@ type Props = {
     fetchUserInfo: (username: string) => void,
     store: storeType,
 };
+// TODO: remove react-bootstrap
+// TODO: find tutorial for good UI
 
 class GithubAPI extends React.Component<Props> {
     input :HTMLInputElement;
