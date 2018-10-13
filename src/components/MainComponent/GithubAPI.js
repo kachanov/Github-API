@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
 
@@ -25,16 +24,6 @@ type Props = {
     fetchUserInfo: (username: string) => void,
     store: storeType,
 };
-
-const style = theme => ({
-    container: {
-      display: "flex",
-      flexWrap: "wrap"
-    },
-    margin: {
-      margin: theme.spacing.unit
-    }
-});
   
 const theme = createMuiTheme({
     palette: {
