@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 
 import Typography from '@material-ui/core/Typography';
 import LocationIcon from '@material-ui/icons/LocationOn';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core"
 
 import styles from "./UserInfo.css";
 

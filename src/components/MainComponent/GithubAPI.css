@@ -1,5 +1,11 @@
+body {
+    background-color: #C0E870;
+}
+
 h1 {
     text-align: center;
+    font-family: "Menlo";
+    color: #0f8a19;
 }
 
 :local(.searchButton) {
