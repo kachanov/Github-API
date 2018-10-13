@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import green from "@material-ui/core/colors/green";
 
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
@@ -23,8 +25,22 @@ type Props = {
     fetchUserInfo: (username: string) => void,
     store: storeType,
 };
-// TODO: remove react-bootstrap
-// TODO: find tutorial for good UI
+
+const style = theme => ({
+    container: {
+      display: "flex",
+      flexWrap: "wrap"
+    },
+    margin: {
+      margin: theme.spacing.unit
+    }
+});
+  
+const theme = createMuiTheme({
+    palette: {
+        primary: green
+    }
+});
 
 class GithubAPI extends React.Component<Props> {
     input :HTMLInputElement;
@@ -45,28 +61,24 @@ class GithubAPI extends React.Component<Props> {
         return (
             <div>
                 <div>
-                    <Typography
-                        variant="display2"
-                        className={styles.mainLabel}
-                        color="primary"
-                    >
-                        Github API Test
-                    </Typography>
+                    <h1>Github API Example</h1>
                 </div>
                 <div className={styles.input}>
-                    <TextField
-                        type="text"
-                        placeholder="Enter a username"
-                        spellCheck={false}
-                        inputRef={input => (this.input = input)}
-                        onKeyUp={this.handleEnterPress}
-                        autoFocus
-                    />
+                    <MuiThemeProvider theme={theme}>
+                        <TextField
+                            label="Username"
+                            placeholder="Enter a username"
+                            spellCheck={false}
+                            inputRef={input => (this.input = input)}
+                            onKeyUp={this.handleEnterPress}
+                            autoFocus
+                        />
+                    </MuiThemeProvider>
                     <Button
                         variant="contained"
-                        color="primary"
                         className={styles.searchButton}
                         onClick={this.getUserInfo}
+                        style={{ backgroundColor: "#DAF3A9" }}
                     >
                         Search users
                     </Button>
