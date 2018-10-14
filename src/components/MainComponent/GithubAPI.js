@@ -13,6 +13,7 @@ import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
+import AllUserInfo from "../AllUserInfo/AllUserInfo";
 
 import { fetchUserInfo } from "../../actions/actions";
 
@@ -34,7 +35,7 @@ const theme = createMuiTheme({
 
 class GithubAPI extends React.Component<Props> {
     input :HTMLInputElement;
-
+    
     handleEnterPress = event => {
         if (event.keyCode === 13) {
             this.getUserInfo();
@@ -47,7 +48,7 @@ class GithubAPI extends React.Component<Props> {
 
      render() {
         let { store } = this.props;
-
+        console.log(this.props);
         return (
             <div>
                 <div>
@@ -73,26 +74,7 @@ class GithubAPI extends React.Component<Props> {
                         Search users
                     </Button>
                 </div>
-                {store.userInfoFailure ? <ErrorComponent /> :
-                <div className={styles.info}>
-                    <div>
-                        {store.userData.avatarURL && <Avatar avatarURL={store.userData.avatarURL} />}
-                    </div>
-                    <div className={styles.infoAndRepos}>
-                        <div>
-                            {store.userData.name &&
-                            <UserInfo 
-                                username={store.userData.name}
-                                location={store.userData.location}
-                                createdAt={store.userData.createdAt}
-                            />}
-                        </div>
-                        <div>
-                            {store.userData.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={store.userData.repositoriesNames} />}
-                        </div>
-                    </div>
-                </div>}
+                <AllUserInfo userData={this.props.store.userData} />
             </div>
         );
     }
