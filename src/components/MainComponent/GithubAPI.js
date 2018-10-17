@@ -70,7 +70,7 @@ class GithubAPI extends React.Component<Props> {
                     <h1>Github API Example</h1>
                 </div>
                 <div className={styles.input}>
-                    <Input getUsernameFromInput={this.getUsernameFromInput} data={"123"}/>
+                    <Input getUsernameFromInput={this.getUsernameFromInput} />
                 </div>
                 <AllUserInfo userData={this.props.store.userData} />
             </div>
