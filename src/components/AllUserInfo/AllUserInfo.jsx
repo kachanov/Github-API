@@ -6,13 +6,21 @@ import PropTypes from "prop-types";
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
+import { fetchUserInfo } from "../../actions/actions";
+import type { storeType } from "../../types/storeType";
+import { connect } from 'react-redux';
+
 
 import styles from "../MainComponent/GithubAPI.css";
 
 
 type Props = {
+    fetchUserInfo: (username: string) => void,
+    store: storeType,
     userData: Object,
 };
+
+
 
 type State = {};
 
@@ -43,8 +51,12 @@ class AllUserInfo extends React.Component<Props, State> {
     }
 }
 
-AllUserInfo.propTypes = {
-    userData: PropTypes.object.isRequired,
-};
+const mapStateToProps = state => ({
+    store: state.store,
+});
 
-export default AllUserInfo;
+const mapDispatchToProps = dispatch => ({
+    fetchUserInfo: params => dispatch(fetchUserInfo(params)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllUserInfo);

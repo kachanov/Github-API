@@ -2,6 +2,8 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -11,6 +13,10 @@ import green from "@material-ui/core/colors/green";
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
+
+import { fetchUserInfo } from "../../actions/actions";
+
+import type { storeType } from "../../types/storeType";
 
 import styles from "../MainComponent/GithubAPI.css";
 
@@ -22,6 +28,8 @@ const theme = createMuiTheme({
 });
 
 type Props = {
+    fetchUserInfo: (username: string) => void,
+    store: storeType,
     userData: Object,
     getUsernameFromInput: Function,
 };
@@ -30,6 +38,15 @@ type State = {};
 
 class Input extends React.Component<Props, State> {
     input :HTMLInputElement;
+
+    getUserInfo = () => {
+        this.props.fetchUserInfo(this.input.value);
+    }
+
+    componentDidMount() {
+        console.log(this.input.value);
+        this.props.fetchUserInfo(this.input.value);
+    }
 
     render() {
         console.log(this.props);
@@ -49,7 +66,7 @@ class Input extends React.Component<Props, State> {
                 <Button
                     variant="contained"
                     className={styles.searchButton}
-                    onClick={() => {this.props.getUsernameFromInput(this.input.value)}}
+                    onClick={this.getUserInfo}
                     style={{ backgroundColor: "#DAF3A9" }}
                 >
                     Search users
@@ -59,8 +76,12 @@ class Input extends React.Component<Props, State> {
     }
 }
 
-Input.propTypes = {
-    userData: PropTypes.object.isRequired,
-};
+const mapStateToProps = state => ({
+    store: state.store,
+});
 
-export default Input;
+const mapDispatchToProps = dispatch => ({
+    fetchUserInfo: params => dispatch(fetchUserInfo(params)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Input);
