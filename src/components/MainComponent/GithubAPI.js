@@ -59,7 +59,7 @@ class GithubAPI extends React.Component<Props> {
     getUserInfo = () => {
         this.props.fetchUserInfo(this.input.value);
     };
-
+// TODO: submit on Enter press
      render() {
         let { store } = this.props;
         console.log(this.props);
@@ -70,7 +70,9 @@ class GithubAPI extends React.Component<Props> {
                     <h1>Github API Example</h1>
                 </div>
                 <div className={styles.input}>
-                    <Input getUsernameFromInput={this.getUsernameFromInput} />
+                    <Route path="/" 
+                        render={() => <Input getUsernameFromInput={this.getUsernameFromInput} />}
+                    />
                 </div>
                 <AllUserInfo userData={this.props.store.userData} />
             </div>
