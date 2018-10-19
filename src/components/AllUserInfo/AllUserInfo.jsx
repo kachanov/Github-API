@@ -1,7 +1,6 @@
 // @flow
 
 import React from "react";
-import PropTypes from "prop-types";
 
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
@@ -9,7 +8,6 @@ import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponen
 import { fetchUserInfo } from "../../actions/actions";
 import type { storeType } from "../../types/storeType";
 import { connect } from 'react-redux';
-
 
 import styles from "../MainComponent/GithubAPI.css";
 
@@ -20,11 +18,7 @@ type Props = {
     userData: Object,
 };
 
-
-
-type State = {};
-
-class AllUserInfo extends React.Component<Props, State> {
+class AllUserInfo extends React.Component<Props> {
     render() {
         const { avatarURL, name, location, createdAt, repositoriesNames} = this.props.userData;
         return(

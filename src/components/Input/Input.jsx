@@ -1,20 +1,13 @@
 // @flow
 
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from 'react-redux';
-
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
-import { Switch, Link, Route } from "react-router-dom";
-
-
-import Avatar from "../Avatar/Avatar";
-import UserInfo from "../UserInfo/UserInfo";
-import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
+import { Link } from "react-router-dom";
 
 import { fetchUserInfo } from "../../actions/actions";
 
@@ -51,16 +44,21 @@ class Input extends React.Component<Props, State> {
 
     getUserInfo = () => {
         this.props.fetchUserInfo(this.state.username);
-    }
+    };
 
     onInputChange = () => {
         this.setState({
             username: this.input.value,
         })
-    }
+    };
+
+    handleEnterPress = event => {
+        if (event.keyCode === 13) {
+            this.getUserInfo();
+        }
+    };
 
     render() {
-        console.log(this.props);
         return(
             <div className={styles.input}>
                 <MuiThemeProvider theme={theme}>
@@ -70,7 +68,7 @@ class Input extends React.Component<Props, State> {
                         spellCheck={false}
                         inputRef={input => (this.input = input)}
                         onChange={this.onInputChange}
-                        //onKeyUp={this.handleEnterPress}
+                        onKeyUp={this.handleEnterPress}
                         autoFocus
                     />
                 </MuiThemeProvider>
