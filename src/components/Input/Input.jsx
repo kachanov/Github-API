@@ -36,7 +36,9 @@ type Props = {
     getUsernameFromInput: Function,
 };
 
-type State = {};
+type State = {
+    username: string,
+};
 
 class Input extends React.Component<Props, State> {
     input :HTMLInputElement;
@@ -48,11 +50,6 @@ class Input extends React.Component<Props, State> {
     }
 
     getUserInfo = () => {
-        this.props.fetchUserInfo(this.state.username);
-    }
-
-    componentDidMount() {
-        console.log(this.input.value);
         this.props.fetchUserInfo(this.state.username);
     }
 
@@ -77,17 +74,14 @@ class Input extends React.Component<Props, State> {
                         autoFocus
                     />
                 </MuiThemeProvider>
-                {console.log(this.props)}
-                {<Link to={`/user/${this.state.username}`}>
-                    <Button
-                        variant="contained"
-                        className={styles.searchButton}
-                        onClick={this.getUserInfo}
-                        style={{ backgroundColor: "#DAF3A9" }}
-                    >
-                        Search users
-                    </Button>
-                </Link>}
+                <Button
+                    variant="contained"
+                    className={styles.searchButton}
+                    onClick={this.getUserInfo}
+                    style={{ backgroundColor: "#DAF3A9" }}
+                >
+                    <Link to={`/user/${this.state.username}`}>Search users</Link>
+                </Button>
             </div>
         );
     }
