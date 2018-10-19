@@ -9,6 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
+import { Switch, Link, Route } from "react-router-dom";
+
 
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
@@ -38,14 +40,26 @@ type State = {};
 
 class Input extends React.Component<Props, State> {
     input :HTMLInputElement;
+    constructor() {
+        super();
+        this.state = {
+            username: "",
+        }
+    }
 
     getUserInfo = () => {
-        this.props.fetchUserInfo(this.input.value);
+        this.props.fetchUserInfo(this.state.username);
     }
 
     componentDidMount() {
         console.log(this.input.value);
-        this.props.fetchUserInfo(this.input.value);
+        this.props.fetchUserInfo(this.state.username);
+    }
+
+    onInputChange = () => {
+        this.setState({
+            username: this.input.value,
+        })
     }
 
     render() {
@@ -58,19 +72,22 @@ class Input extends React.Component<Props, State> {
                         placeholder="Enter a username"
                         spellCheck={false}
                         inputRef={input => (this.input = input)}
+                        onChange={this.onInputChange}
                         //onKeyUp={this.handleEnterPress}
                         autoFocus
                     />
                 </MuiThemeProvider>
                 {console.log(this.props)}
-                <Button
-                    variant="contained"
-                    className={styles.searchButton}
-                    onClick={this.getUserInfo}
-                    style={{ backgroundColor: "#DAF3A9" }}
-                >
-                    Search users
-                </Button>
+                {<Link to={`/user/${this.state.username}`}>
+                    <Button
+                        variant="contained"
+                        className={styles.searchButton}
+                        onClick={this.getUserInfo}
+                        style={{ backgroundColor: "#DAF3A9" }}
+                    >
+                        Search users
+                    </Button>
+                </Link>}
             </div>
         );
     }

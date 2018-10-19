@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
-import { Switch, Link, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import GithubAPI from './components/MainComponent/GithubAPI';

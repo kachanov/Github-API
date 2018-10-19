@@ -69,12 +69,15 @@ class GithubAPI extends React.Component<Props> {
                 <div>
                     <h1>Github API Example</h1>
                 </div>
-                <div className={styles.input}>
-                    <Route path="/" 
-                        render={() => <Input getUsernameFromInput={this.getUsernameFromInput} />}
+                <Input getUsernameFromInput={this.getUsernameFromInput} />
+                <Switch>
+                    <Route path="/user/:username"
+                        render={() => <AllUserInfo userData={this.props.store.userData} />}
                     />
-                </div>
-                <AllUserInfo userData={this.props.store.userData} />
+                    <Route path="/error"
+                        component={ErrorComponent}
+                    />
+                </Switch>
             </div>
         );
     }
