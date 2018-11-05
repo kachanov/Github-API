@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 
 import Typography from '@material-ui/core/Typography';
 import LocationIcon from '@material-ui/icons/LocationOn';
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core"
 
 import styles from "./UserInfo.css";
 
@@ -35,7 +33,7 @@ class UserInfo extends React.Component<Props, State> {
               </div>
               <div className={styles.label}>
                 <Typography variant="headline">
-                    Created At: {this.props.createdAt}
+                    Created at: {this.props.createdAt}
                 </Typography>
               </div>
           </div>

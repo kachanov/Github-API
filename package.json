@@ -9,9 +9,11 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-redux": "latest",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "redux": "latest",
-    "redux-thunk": "latest"
+    "redux-thunk": "latest",
+    "history": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

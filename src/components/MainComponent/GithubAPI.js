@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { Switch, Link, Route } from "react-router-dom";
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
 
@@ -13,6 +13,8 @@ import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
+import AllUserInfo from "../AllUserInfo/AllUserInfo";
+import Input from "../Input/Input";
 
 import { fetchUserInfo } from "../../actions/actions";
 
@@ -26,15 +28,9 @@ type Props = {
     store: storeType,
 };
 
-const style = theme => ({
-    container: {
-      display: "flex",
-      flexWrap: "wrap"
-    },
-    margin: {
-      margin: theme.spacing.unit
-    }
-});
+type State = {
+    username: string,
+}
   
 const theme = createMuiTheme({
     palette: {
@@ -42,67 +38,49 @@ const theme = createMuiTheme({
     }
 });
 
-class GithubAPI extends React.Component<Props> {
+class GithubAPI extends React.Component<Props, State> {
     input :HTMLInputElement;
+    constructor() {
+        super();
 
-    handleEnterPress = event => {
+        this.state = {
+            username: "",
+        }
+    }
+    
+    /* handleEnterPress = event => {
         if (event.keyCode === 13) {
             this.getUserInfo();
         }
-    };
+    }; */
 
-    getUserInfo = () => {
-        this.props.fetchUserInfo(this.input.value);
+    getUsernameFromInput = (username) => {
+        this.setState({
+            username,
+        })
     };
 
      render() {
         let { store } = this.props;
-
+        console.log(this.props);
+        console.log(this.state);
         return (
             <div>
                 <div>
                     <h1>Github API Example</h1>
                 </div>
                 <div className={styles.input}>
-                    <MuiThemeProvider theme={theme}>
-                        <TextField
-                            label="Username"
-                            placeholder="Enter a username"
-                            spellCheck={false}
-                            inputRef={input => (this.input = input)}
-                            onKeyUp={this.handleEnterPress}
-                            autoFocus
-                        />
-                    </MuiThemeProvider>
-                    <Button
-                        variant="contained"
-                        className={styles.searchButton}
-                        onClick={this.getUserInfo}
-                        style={{ backgroundColor: "#DAF3A9" }}
-                    >
-                        Search users
-                    </Button>
+                    <Input
+                        {...this.props.history}
+                        getUsernameFromInput={this.getUsernameFromInput}
+                    />
                 </div>
-                {store.userInfoFailure ? <ErrorComponent /> :
-                <div className={styles.info}>
-                    <div>
-                        {store.userData.avatarURL && <Avatar avatarURL={store.userData.avatarURL} />}
-                    </div>
-                    <div className={styles.infoAndRepos}>
-                        <div>
-                            {store.userData.name &&
-                            <UserInfo 
-                                username={store.userData.name}
-                                location={store.userData.location}
-                                createdAt={store.userData.createdAt}
-                            />}
-                        </div>
-                        <div>
-                            {store.userData.repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={store.userData.repositoriesNames} />}
-                        </div>
-                    </div>
-                </div>}
+                <Switch>
+                    <Route path={`/home/user/${this.state.username}`} render={() =>
+                        <AllUserInfo userData={this.props.store.userData} />
+                    } />
+                    <Route exact path="/home/error" component={ErrorComponent} />
+                </Switch>
             </div>
         );
     }
