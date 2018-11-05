@@ -27,6 +27,10 @@ type Props = {
     fetchUserInfo: (username: string) => void,
     store: storeType,
 };
+
+type State = {
+    username: string,
+}
   
 const theme = createMuiTheme({
     palette: {
@@ -34,7 +38,7 @@ const theme = createMuiTheme({
     }
 });
 
-class GithubAPI extends React.Component<Props> {
+class GithubAPI extends React.Component<Props, State> {
     input :HTMLInputElement;
     constructor() {
         super();
@@ -44,20 +48,16 @@ class GithubAPI extends React.Component<Props> {
         }
     }
     
-    handleEnterPress = event => {
+    /* handleEnterPress = event => {
         if (event.keyCode === 13) {
             this.getUserInfo();
         }
-    };
+    }; */
 
     getUsernameFromInput = (username) => {
         this.setState({
             username,
         })
-    };
-
-    getUserInfo = () => {
-        this.props.fetchUserInfo(this.input.value);
     };
 
      render() {
@@ -70,9 +70,19 @@ class GithubAPI extends React.Component<Props> {
                     <h1>Github API Example</h1>
                 </div>
                 <div className={styles.input}>
-                    <Input getUsernameFromInput={this.getUsernameFromInput} />
+                    <Input
+                        {...this.props.history}
+                        getUsernameFromInput={this.getUsernameFromInput}
+                    />
                 </div>
-                <AllUserInfo userData={this.props.store.userData} />
+                <Switch>
+                    <Route path={`/home/user/${this.state.username}`} render={() =>
+                        <AllUserInfo userData={this.props.store.userData} />
+                    }>
+                    </Route>
+                    <Route path="home/error" component={ErrorComponent}>
+                    </Route>
+                </Switch>
             </div>
         );
     }
