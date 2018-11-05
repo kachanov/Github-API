@@ -78,10 +78,8 @@ class GithubAPI extends React.Component<Props, State> {
                 <Switch>
                     <Route path={`/home/user/${this.state.username}`} render={() =>
                         <AllUserInfo userData={this.props.store.userData} />
-                    }>
-                    </Route>
-                    <Route path="home/error" component={ErrorComponent}>
-                    </Route>
+                    } />
+                    <Route exact path="/home/error" component={ErrorComponent} />
                 </Switch>
             </div>
         );

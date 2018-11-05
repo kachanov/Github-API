@@ -41,7 +41,14 @@ class Input extends React.Component<Props, State> {
 
     getUserInfo = () => {
         this.props.fetchUserInfo(this.input.value);
-        this.props.push(`/home/user/${this.input.value}`)
+
+        setTimeout(() => {
+            if (this.props.store.userInfoSuccess) {
+                this.props.push(`/home/user/${this.input.value}`)
+            } else {
+                this.props.push("/home/error");
+            }
+        }, 1000);
     };
 
     componentDidMount() {
