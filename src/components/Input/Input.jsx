@@ -42,6 +42,7 @@ class Input extends React.Component<Props, State> {
     getUserInfo = () => {
         this.props.fetchUserInfo(this.input.value);
 
+        //TODO refactor setTimeout
         setTimeout(() => {
             if (this.props.store.userInfoSuccess) {
                 this.props.push(`/home/user/${this.input.value}`)
