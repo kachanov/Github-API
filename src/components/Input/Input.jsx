@@ -4,21 +4,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 
-
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
-
-import Avatar from "../Avatar/Avatar";
-import UserInfo from "../UserInfo/UserInfo";
-import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
+import styles from "../MainComponent/GithubAPI.css";
 
 import { fetchUserInfo } from "../../actions/actions";
 
 import type { storeType } from "../../types/storeType";
-
-import styles from "../MainComponent/GithubAPI.css";
 
 
 const theme = createMuiTheme({
@@ -32,11 +26,10 @@ type Props = {
     store: storeType,
     userData: Object,
     getUsernameFromInput: Function,
+    push: Function,
 };
 
-type State = {};
-
-class Input extends React.Component<Props, State> {
+class Input extends React.Component<Props> {
     input :HTMLInputElement;
 
     getUserInfo = () => {
@@ -52,13 +45,13 @@ class Input extends React.Component<Props, State> {
         }, 1000);
     };
 
-    componentDidMount() {
-        console.log(this.input.value);
-        // this.props.fetchUserInfo(this.input.value);
-    }
+    handleEnterPress = event => {
+        if (event.keyCode === 13) {
+            this.getUserInfo();
+        }
+    };
 
     render() {
-        console.log(this.props);
         return(
             <div className={styles.input}>
                 <MuiThemeProvider theme={theme}>
@@ -67,11 +60,10 @@ class Input extends React.Component<Props, State> {
                         placeholder="Enter a username"
                         spellCheck={false}
                         inputRef={input => (this.input = input)}
-                        //onKeyUp={this.handleEnterPress}
+                        onKeyUp={this.handleEnterPress}
                         autoFocus
                     />
                 </MuiThemeProvider>
-                {console.log(this.props)}
                 <Button
                     variant="contained"
                     className={styles.searchButton}
@@ -92,5 +84,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchUserInfo: params => dispatch(fetchUserInfo(params)),
 });
+
+Input.propTypes = {
+    getUsernameFromInput: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input);

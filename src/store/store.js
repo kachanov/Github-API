@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 
 import { reducers } from "../reducers/reducer";
 
-// TODO createdAt
 
 export const initialState = {
     userInfoRequest: false,

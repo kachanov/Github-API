@@ -10,15 +10,11 @@ type Props = {
     avatarURL: string,
 };
 
-type State = {};
-
-class Avatar extends React.Component<Props, State> {
-    render() {
-        return(
-            <img src={this.props.avatarURL} className={styles.avatar} alt="avatar" />
-        );
-    }
-}
+const Avatar = (props: Props) => {
+    return(
+        <img src={props.avatarURL} className={styles.avatar} alt="avatar" />
+    );
+};
 
 Avatar.propTypes = {
     avatarURL: PropTypes.string.isRequired,

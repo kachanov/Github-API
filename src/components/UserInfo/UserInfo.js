@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 import Typography from '@material-ui/core/Typography';
 import LocationIcon from '@material-ui/icons/LocationOn';
-
 import styles from "./UserInfo.css";
 
 
@@ -15,36 +14,32 @@ type Props = {
     createdAt: string,
 };
 
-type State = {};
-
-class UserInfo extends React.Component<Props, State> {
-    render() {
-        return(
-          <div className={styles.infoLabels}>
-              <div className={styles.label}>
-                <Typography variant="headline">
-                    Name: {this.props.username}
-                </Typography>
-              </div>
-              <div className={styles.label}>
-                <Typography variant="headline">
-                    <LocationIcon /> Location: {this.props.location ? this.props.location : "Unknown"}
-                </Typography>
-              </div>
-              <div className={styles.label}>
-                <Typography variant="headline">
-                    Created at: {this.props.createdAt}
-                </Typography>
-              </div>
+const UserInfo = (props: Props) => {
+    return(
+      <div className={styles.infoLabels}>
+          <div className={styles.label}>
+            <Typography variant="headline">
+                Name: {props.username}
+            </Typography>
           </div>
-        );
-    }
-}
+          <div className={styles.label}>
+            <Typography variant="headline">
+                <LocationIcon /> Location: {props.location ? props.location : "Unknown"}
+            </Typography>
+          </div>
+          <div className={styles.label}>
+            <Typography variant="headline">
+                Created at: {props.createdAt}
+            </Typography>
+          </div>
+      </div>
+    );
+};
 
 UserInfo.propTypes = {
     username: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    craetedAt: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
 };
 
 export default UserInfo;

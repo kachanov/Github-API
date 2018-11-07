@@ -1,15 +1,15 @@
 // @flow
 
 import React from "react";
+import { connect } from 'react-redux';
 
 import Avatar from "../Avatar/Avatar";
 import UserInfo from "../UserInfo/UserInfo";
-import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
+import RepositoriesList from "../RepositoriesList/RepositoriesList";
 import { fetchUserInfo } from "../../actions/actions";
-import type { storeType } from "../../types/storeType";
-import { connect } from 'react-redux';
-
 import styles from "../MainComponent/GithubAPI.css";
+
+import type { storeType } from "../../types/storeType";
 
 
 type Props = {
@@ -18,32 +18,31 @@ type Props = {
     userData: Object,
 };
 
-class AllUserInfo extends React.Component<Props> {
-    render() {
-        const { avatarURL, name, location, createdAt, repositoriesNames} = this.props.userData;
-        return(
-            <div className={styles.info}>
-                    <div>
-                        {avatarURL && <Avatar avatarURL={avatarURL} />}
-                    </div>
-                    <div className={styles.infoAndRepos}>
-                        <div>
-                            {name &&
-                            <UserInfo 
-                                username={name}
-                                location={location}
-                                createdAt={createdAt}
-                            />}
-                        </div>
-                        <div>
-                            {repositoriesNames.length > 0 &&
-                            <RepositoriesComponent repositoriesNames={repositoriesNames} />}
-                        </div>
-                    </div>
+const AllUserInfo = (props: Props) => {
+    const { avatarURL, name, location, createdAt, repositoriesNames} = props.userData;
+
+    return(
+        <div className={styles.info}>
+            <div>
+                {avatarURL && <Avatar avatarURL={avatarURL} />}
+            </div>
+            <div className={styles.infoAndRepos}>
+                <div>
+                    {name &&
+                    <UserInfo
+                        username={name}
+                        location={location}
+                        createdAt={createdAt}
+                    />}
                 </div>
-        );
-    }
-}
+                <div>
+                    {repositoriesNames.length > 0 &&
+                    <RepositoriesList repositoriesNames={repositoriesNames} />}
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const mapStateToProps = state => ({
     store: state.store,

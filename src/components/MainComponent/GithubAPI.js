@@ -2,44 +2,29 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Link, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import green from "@material-ui/core/colors/green";
-
-import Avatar from "../Avatar/Avatar";
-import UserInfo from "../UserInfo/UserInfo";
-import RepositoriesComponent from "../RepositoriesComponent/RepositoriesComponent";
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import AllUserInfo from "../AllUserInfo/AllUserInfo";
 import Input from "../Input/Input";
+import styles from './GithubAPI.css';
 
 import { fetchUserInfo } from "../../actions/actions";
 
 import type { storeType } from "../../types/storeType";
 
-import styles from './GithubAPI.css';
-
 
 type Props = {
     fetchUserInfo: (username: string) => void,
     store: storeType,
+    history: Object,
 };
 
 type State = {
     username: string,
 }
-  
-const theme = createMuiTheme({
-    palette: {
-        primary: green
-    }
-});
 
 class GithubAPI extends React.Component<Props, State> {
-    input :HTMLInputElement;
     constructor() {
         super();
 
@@ -47,12 +32,6 @@ class GithubAPI extends React.Component<Props, State> {
             username: "",
         }
     }
-    
-    /* handleEnterPress = event => {
-        if (event.keyCode === 13) {
-            this.getUserInfo();
-        }
-    }; */
 
     getUsernameFromInput = (username) => {
         this.setState({
@@ -62,8 +41,7 @@ class GithubAPI extends React.Component<Props, State> {
 
      render() {
         let { store } = this.props;
-        console.log(this.props);
-        console.log(this.state);
+
         return (
             <div>
                 <div>
@@ -77,7 +55,7 @@ class GithubAPI extends React.Component<Props, State> {
                 </div>
                 <Switch>
                     <Route path={`/home/user/${this.state.username}`} render={() =>
-                        <AllUserInfo userData={this.props.store.userData} />
+                        <AllUserInfo userData={store.userData} />
                     } />
                     <Route exact path="/home/error" component={ErrorComponent} />
                 </Switch>
