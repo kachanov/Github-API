@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
-import { Switch, Link, Route, BrowserRouter, Redirect} from "react-router-dom";
+import { Switch, Route, Router , Redirect} from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import GithubAPI from './components/MainComponent/GithubAPI';
@@ -17,7 +17,7 @@ if (Root === null) {
 }
 
 ReactDOM.render(
-    <BrowserRouter history={history}>
+    <Router history={history}>
         <Provider store={store}>
             <Switch>
                 <Route exact path="/">
@@ -26,7 +26,7 @@ ReactDOM.render(
                 <Route path="/home" component={GithubAPI} />
             </Switch>
         </Provider>
-    </BrowserRouter>,
+    </Router>,
     Root
 );
 
