@@ -24,7 +24,7 @@ export const initialState = {
 };
 
 export function configureStore() {
-    return createStore(reducers, initialState, applyMiddleware(thunk));
+    return createStore(reducers, /* initialState, */ applyMiddleware(thunk));
 }
 
 export const store = configureStore();
