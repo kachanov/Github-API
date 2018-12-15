@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import styles from "./ErrorComponent.css";
 
 
-const ErrorComponent = () => {
+function ErrorComponent() {
     return(
         <div className={styles.error}>
             <Typography variant="headline">
@@ -20,6 +20,6 @@ const ErrorComponent = () => {
             </Typography>
         </div>
     );
-};
+}
 
 export default ErrorComponent;

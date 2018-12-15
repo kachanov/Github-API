@@ -13,8 +13,9 @@ type Props = {
     repositoriesNames: Array<Object>,
 };
 
-const RepositoriesList = (props: Props) => {
+function RepositoriesList(props: Props) {
     let key = 0;
+
     return(
         <div className={styles.repos}>
             <List>
@@ -26,7 +27,7 @@ const RepositoriesList = (props: Props) => {
             </List>
         </div>
     );
-};
+}
 
 RepositoriesList.propTypes = {
   repositoriesNames: PropTypes.array.isRequired,

@@ -18,7 +18,7 @@ type Props = {
     userData: Object,
 };
 
-const AllUserInfo = (props: Props) => {
+function AllUserInfo(props: Props) {
     const { avatarURL, name, location, createdAt, repositoriesNames} = props.userData;
 
     return(
@@ -42,7 +42,7 @@ const AllUserInfo = (props: Props) => {
             </div>
         </div>
     );
-};
+}
 
 const mapStateToProps = state => ({
     store: state.store,

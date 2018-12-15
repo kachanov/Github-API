@@ -10,11 +10,9 @@ type Props = {
     avatarURL: string,
 };
 
-const Avatar = (props: Props) => {
-    return(
-        <img src={props.avatarURL} className={styles.avatar} alt="avatar" />
-    );
-};
+function Avatar(props: Props) {
+    return <img src={props.avatarURL} className={styles.avatar} alt="avatar" />;
+}
 
 Avatar.propTypes = {
     avatarURL: PropTypes.string.isRequired,

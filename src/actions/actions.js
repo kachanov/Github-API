@@ -1,50 +1,39 @@
 // @flow
 
-import { FETCH_USER_INFO_REQUEST,
-         FETCH_USER_INFO_SUCCESS,
-         FETCH_USER_INFO_FAILURE,
-         FETCH_USER_REPOSITORIES_REQUEST,
-         FETCH_USER_REPOSITORIES_SUCCESS,
-         FETCH_USER_REPOSITORIES_FAILURE
+import {
+    FETCH_USER_INFO_REQUEST,
+    FETCH_USER_INFO_SUCCESS,
+    FETCH_USER_INFO_FAILURE,
+    FETCH_USER_REPOSITORIES_REQUEST,
+    FETCH_USER_REPOSITORIES_SUCCESS,
+    FETCH_USER_REPOSITORIES_FAILURE
 } from "../constants/actionNames";
 
-export const fetchUserInfoRequest = () => {
-    return {
-        type: FETCH_USER_INFO_REQUEST,
-    }
-};
+export const fetchUserInfoRequest = () => ({
+    type: FETCH_USER_INFO_REQUEST,
+});
 
-export const fetchUserInfoSuccess = (data: Object) => {
-    return {
-        type: FETCH_USER_INFO_SUCCESS,
-        payload: data,
-    }
-};
+export const fetchUserInfoSuccess = (data: Object) => ({
+    type: FETCH_USER_INFO_SUCCESS,
+    payload: data,
+});
 
-export const fetchUserInfoFailure = () => {
-    return {
-        type: FETCH_USER_INFO_FAILURE,
-    }
-};
+export const fetchUserInfoFailure = () => ({
+    type: FETCH_USER_INFO_FAILURE,
+});
 
-export const fetchUserRepositoriesRequest = () => {
-    return {
-        type: FETCH_USER_REPOSITORIES_REQUEST,
-    }
-};
+export const fetchUserRepositoriesRequest = () => ({
+    type: FETCH_USER_REPOSITORIES_REQUEST,
+});
 
-export const fetchUserRepositoriesSuccess = (data: Array<Object>) => {
-    return {
-        type: FETCH_USER_REPOSITORIES_SUCCESS,
-        payload: data
-    }
-};
+export const fetchUserRepositoriesSuccess = (data: Array<Object>) => ({
+    type: FETCH_USER_REPOSITORIES_SUCCESS,
+    payload: data,
+});
 
-export const fetchUserRepositoriesFailure = () => {
-    return {
-        type: FETCH_USER_REPOSITORIES_FAILURE,
-    }
-};
+export const fetchUserRepositoriesFailure = () => ({
+    type: FETCH_USER_REPOSITORIES_FAILURE,
+});
 
 export const fetchUserInfo = (username: string) => async (dispatch: Function) => {
     const url = `https://api.github.com/users/${username}`;
@@ -55,9 +44,7 @@ export const fetchUserInfo = (username: string) => async (dispatch: Function) =>
             return response;
         })
         .then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
+            if (response.status === 200) return response.json();
 
             throw new Error("Error");
         })
@@ -72,9 +59,7 @@ export const fetchUserInfo = (username: string) => async (dispatch: Function) =>
             return response;
         })
         .then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
+            if (response.status === 200) return response.json();
 
             throw new Error("Error");
         })

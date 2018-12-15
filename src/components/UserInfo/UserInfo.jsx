@@ -14,7 +14,7 @@ type Props = {
     createdAt: string,
 };
 
-const UserInfo = (props: Props) => {
+function UserInfo(props: Props) {
     return(
       <div className={styles.infoLabels}>
           <div className={styles.label}>
@@ -34,7 +34,7 @@ const UserInfo = (props: Props) => {
           </div>
       </div>
     );
-};
+}
 
 UserInfo.propTypes = {
     username: PropTypes.string.isRequired,
