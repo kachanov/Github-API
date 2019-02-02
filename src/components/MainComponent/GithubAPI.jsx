@@ -1,11 +1,12 @@
 // @flow
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
+import styled from 'styled-components';
+import { Flex } from 'rebass';
 
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import AllUserInfo from '../AllUserInfo/AllUserInfo';
-import styles from './GithubAPI.css';
 
 type Props = {
     history: Object,
@@ -13,16 +14,53 @@ type Props = {
     username: string,
 };
 
+const Heading = styled.h1`
+    text-align: center;
+    font-family: "Menlo";
+    color: #0F8A19;
+`;
+
+const Input = styled.input`
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    background: #DAF3A9;
+    font-family: "Menlo";
+    font-size: 16px;
+    font-weight: bold;
+    
+    &:focus {
+        outline: none;
+    }
+`;
+
+const Button = styled.button`
+    width: 100px;
+    height: 32px;
+    margin-left: 10px;
+    border-radius: 3px;
+    font-family: "Menlo";
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    background-color: #DAF3A9;
+`;
+
 function GithubAPI(props: Props){
     return (
         <React.Fragment>
-            <div>
-                <h1>Github API Example</h1>
-            </div>
-            <div className={styles.input}>
-                <input onChange={(event) => props.handleInputChange(event.target.value)} />
-                <Link to={`home/user/${props.username}`}>OK</Link>
-            </div>
+            <Heading>Github API Example</Heading>
+            <Flex justifyContent='center'>
+                <Input
+                    onChange={(event) => props.handleInputChange(event.target.value)}
+                    placeholder='username'
+                    spellcheck='false'
+                />
+                <Button onClick={() => props.history.push(`home/user/${props.username}`)}>
+                    Search
+                </Button>
+            </Flex>
             <Switch>
                 <Route path={`/home/user/${props.username}`} render={() =>
                     <AllUserInfo username={props.username}/>
