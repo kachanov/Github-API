@@ -62,9 +62,10 @@ function GithubAPI(props: Props){
                 </Button>
             </Flex>
             <Switch>
-                <Route path={`/home/user/${props.username}`} render={() =>
-                    <AllUserInfo username={props.username}/>
-                } />
+                <Route
+                    path={`/home/user/${props.username}`}
+                    render={() => <AllUserInfo username={props.username}/>}
+                />
                 <Route exact path="/home/error" component={ErrorComponent} />
             </Switch>
         </React.Fragment>
