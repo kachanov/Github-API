@@ -23,15 +23,29 @@ type Props = {
 
 function AllUserInfo(props: Props) {
     console.log(props);
+    const { data } = props;
+    console.log(data);
 
     return(
-        <React.Fragment>
-            <h1>hello</h1>
-            <h1>hello</h1>
-            <h1>hello</h1>
-            <h1>hello</h1>
-        </React.Fragment>
-    );
+        <div className={styles.info}>
+            <div>
+                {data.avatar_url && <Avatar avatarURL={data.avatar_url} />}
+            </div>
+            <div className={styles.infoAndRepos}>
+                <div>
+                    {data.name &&
+                    <UserInfo
+                        username={data.name}
+                        location={data.location}
+                        createdAt={data.created_at}
+                    />}
+                </div>
+                {/*<div>
+                    {repositoriesNames.length > 0 &&
+                    <RepositoriesList repositoriesNames={repositoriesNames} />}
+                </div>*/}
+            </div>
+        </div>    );
 }
 
 const mapStateToProps = state => ({
@@ -50,3 +64,8 @@ const enhance = compose(
 export default enhance(AllUserInfo)
 
 // export default connect(mapStateToProps, mapDispatchToProps)(AllUserInfo);
+
+/*
+
+
+*/
