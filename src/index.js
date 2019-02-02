@@ -7,8 +7,6 @@ import { Switch, Route, Router , Redirect} from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import GithubAPI from './components/MainComponent/GithubAPI';
-import { store } from "./store/store";
-
 
 const history = createBrowserHistory();
 const Root = document.getElementById("root");
@@ -18,7 +16,7 @@ if (Root === null) {
 
 ReactDOM.render(
     <Router history={history}>
-        <Provider store={store}>
+        <Provider>
             <Switch>
                 <Route exact path="/">
                     <Redirect to="/home"/>

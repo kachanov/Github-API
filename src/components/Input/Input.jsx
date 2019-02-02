@@ -10,11 +10,6 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
 import styles from "../MainComponent/GithubAPI.css";
 
-import { fetchUserInfo } from "../../actions/actions";
-
-import type { storeType } from "../../types/storeType";
-
-
 const theme = createMuiTheme({
     palette: {
         primary: green
@@ -23,7 +18,6 @@ const theme = createMuiTheme({
 
 type Props = {
     fetchUserInfo: (username: string) => void,
-    store: storeType,
     userData: Object,
     getUsernameFromInput: Function,
     push: Function,

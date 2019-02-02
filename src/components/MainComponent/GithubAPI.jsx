@@ -1,73 +1,46 @@
 // @flow
-
 import React from 'react';
-import { connect } from 'react-redux';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from 'react-router-dom';
+import { withStateHandlers, compose } from 'recompose';
 
-import ErrorComponent from "../ErrorComponent/ErrorComponent";
-import AllUserInfo from "../AllUserInfo/AllUserInfo";
-import Input from "../Input/Input";
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import AllUserInfo from '../AllUserInfo/AllUserInfo';
 import styles from './GithubAPI.css';
 
-import { fetchUserInfo } from "../../actions/actions";
-
-import type { storeType } from "../../types/storeType";
-
-
 type Props = {
-    fetchUserInfo: (username: string) => void,
-    store: storeType,
     history: Object,
+    handleInputChange: Function,
+    username: string,
 };
 
-type State = {
-    username: string,
-}
-
-class GithubAPI extends React.Component<Props, State> {
-    constructor() {
-        super();
-
-        this.state = {
-            username: "",
-        }
-    }
-
-    getUsernameFromInput = (username) => {
-        this.setState({
-            username,
-        })
-    };
-
-     render() {
-        let { store } = this.props;
-
-        return (
+function GithubAPI(props: Props){
+    return (
+        <React.Fragment>
             <div>
-                <div>
-                    <h1>Github API Example</h1>
-                </div>
-                <div className={styles.input}>
-                    <input onChange={(event) => this.setState({ username: event.target.value })} />
-                    <Link to={`home/user/${this.state.username}`}>OK</Link>
-                </div>
-                <Switch>
-                    <Route path={`/home/user/${this.state.username}`} render={() =>
-                        <AllUserInfo username={this.state.username}/>
-                    } />
-                    <Route exact path="/home/error" component={ErrorComponent} />
-                </Switch>
+                <h1>Github API Example</h1>
             </div>
-        );
-    }
+            <div className={styles.input}>
+                <input onChange={(event) => props.handleInputChange(event.target.value)} />
+                <Link to={`home/user/${props.username}`}>OK</Link>
+            </div>
+            <Switch>
+                <Route path={`/home/user/${props.username}`} render={() =>
+                    <AllUserInfo username={props.username}/>
+                } />
+                <Route exact path="/home/error" component={ErrorComponent} />
+            </Switch>
+        </React.Fragment>
+    );
 }
 
-const mapStateToProps = state => ({
-    store: state.store,
-});
+const initialState = {
+    username: '',
+};
 
-const mapDispatchToProps = dispatch => ({
-    fetchUserInfo: params => dispatch(fetchUserInfo(params)),
-});
+const enhance = compose(
+  withStateHandlers(initialState, {
+      handleInputChange: ({ username }) => value => ({ username: value }),
+  })
+);
 
-export default connect(mapStateToProps, mapDispatchToProps)(GithubAPI);
+export default enhance(GithubAPI);
