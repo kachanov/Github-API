@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 
 import ErrorComponent from "../ErrorComponent/ErrorComponent";
 import AllUserInfo from "../AllUserInfo/AllUserInfo";
@@ -48,14 +48,12 @@ class GithubAPI extends React.Component<Props, State> {
                     <h1>Github API Example</h1>
                 </div>
                 <div className={styles.input}>
-                    <Input
-                        {...this.props.history}
-                        getUsernameFromInput={this.getUsernameFromInput}
-                    />
+                    <input onChange={(event) => this.setState({ username: event.target.value })} />
+                    <Link to={`home/user/${this.state.username}`}>OK</Link>
                 </div>
                 <Switch>
                     <Route path={`/home/user/${this.state.username}`} render={() =>
-                        <AllUserInfo userData={store.userData} />
+                        <AllUserInfo username={this.state.username}/>
                     } />
                     <Route exact path="/home/error" component={ErrorComponent} />
                 </Switch>

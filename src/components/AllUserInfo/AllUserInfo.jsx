@@ -8,8 +8,11 @@ import UserInfo from "../UserInfo/UserInfo";
 import RepositoriesList from "../RepositoriesList/RepositoriesList";
 import { fetchUserInfo } from "../../actions/actions";
 import styles from "../MainComponent/GithubAPI.css";
+import { compose, branch, renderNothing } from 'recompose';
 
 import type { storeType } from "../../types/storeType";
+import withRequest from "../../utils/withRequest";
+import {fetchUser} from "../../utils/api";
 
 
 type Props = {
@@ -19,28 +22,15 @@ type Props = {
 };
 
 function AllUserInfo(props: Props) {
-    const { avatarURL, name, location, createdAt, repositoriesNames} = props.userData;
+    console.log(props);
 
     return(
-        <div className={styles.info}>
-            <div>
-                {avatarURL && <Avatar avatarURL={avatarURL} />}
-            </div>
-            <div className={styles.infoAndRepos}>
-                <div>
-                    {name &&
-                    <UserInfo
-                        username={name}
-                        location={location}
-                        createdAt={createdAt}
-                    />}
-                </div>
-                <div>
-                    {repositoriesNames.length > 0 &&
-                    <RepositoriesList repositoriesNames={repositoriesNames} />}
-                </div>
-            </div>
-        </div>
+        <React.Fragment>
+            <h1>hello</h1>
+            <h1>hello</h1>
+            <h1>hello</h1>
+            <h1>hello</h1>
+        </React.Fragment>
     );
 }
 
@@ -52,4 +42,11 @@ const mapDispatchToProps = dispatch => ({
     fetchUserInfo: params => dispatch(fetchUserInfo(params)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllUserInfo);
+const enhance = compose(
+    withRequest(({ username }) => console.log(username) || fetchUser(username)),
+    branch(({ isLoading }) => isLoading, renderNothing),
+);
+
+export default enhance(AllUserInfo)
+
+// export default connect(mapStateToProps, mapDispatchToProps)(AllUserInfo);
