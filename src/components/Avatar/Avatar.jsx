@@ -11,7 +11,9 @@ type Props = {
 };
 
 function Avatar(props: Props) {
-    return <img src={props.avatarURL} className={styles.avatar} alt="avatar" />;
+    return <div>
+        <img src={props.avatarURL} className={styles.avatar} alt="avatar" />
+    </div>
 }
 
 Avatar.propTypes = {

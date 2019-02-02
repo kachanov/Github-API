@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { compose, branch, renderNothing } from 'recompose';
+import { Flex } from 'rebass';
 
 import Avatar from '../Avatar/Avatar';
 import UserInfo from '../UserInfo/UserInfo';
@@ -18,10 +19,8 @@ function AllUserInfo(props: Props) {
     const { data } = props;
 
     return(
-        <div className={styles.info}>
-            <div>
-                {data.avatar_url && <Avatar avatarURL={data.avatar_url} />}
-            </div>
+        <Flex justifyContent='center'>
+            <Avatar avatarURL={data.avatar_url} />
             <div className={styles.infoAndRepos}>
                 <div>
                     {data.name &&
@@ -35,7 +34,7 @@ function AllUserInfo(props: Props) {
                     <RepositoriesList username={data.login} />
                 </div>
             </div>
-        </div>
+        </Flex>
     );
 }
 
