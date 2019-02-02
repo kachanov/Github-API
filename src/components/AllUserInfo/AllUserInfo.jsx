@@ -9,7 +9,6 @@ import styles from '../MainComponent/GithubAPI.css';
 import withRequest from '../../utils/withRequest';
 import {fetchUser} from '../../utils/api';
 
-
 type Props = {
     fetchUserInfo: (username: string) => void,
     data: Object,
@@ -32,10 +31,9 @@ function AllUserInfo(props: Props) {
                         createdAt={new Date(data.created_at).toLocaleDateString()}
                     />}
                 </div>
-                {/*<div>
-                    {repositoriesNames.length > 0 &&
-                    <RepositoriesList repositoriesNames={repositoriesNames} />}
-                </div>*/}
+                <div>
+                    <RepositoriesList username={data.login} />
+                </div>
             </div>
         </div>
     );

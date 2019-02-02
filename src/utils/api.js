@@ -5,3 +5,9 @@ export function fetchUser(username) {
         .get(`http://api.github.com/users/${username}`)
         .then(({ data }) => data);
 }
+
+export function fetchUserRepos(username) {
+    return axios
+        .get(`http://api.github.com/users/${username}/repos`)
+        .then(({ data }) => data);
+}

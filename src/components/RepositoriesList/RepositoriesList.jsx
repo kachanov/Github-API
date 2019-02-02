@@ -1,16 +1,18 @@
 // @flow
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import { branch, compose, renderNothing } from 'recompose';
+import withRequest from '../../utils/withRequest';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import styles from "./RepositoriesList.css";
-
+import styles from './RepositoriesList.css';
+import { fetchUserRepos } from '../../utils/api';
 
 type Props = {
-    repositoriesNames: Array<Object>,
+    username: string,
+    data: Array<Object>,
 };
 
 function RepositoriesList(props: Props) {
@@ -19,7 +21,7 @@ function RepositoriesList(props: Props) {
     return(
         <div className={styles.repos}>
             <List>
-                {props.repositoriesNames.map(repo => {
+                {props.data.map(repo => {
                     return <ListItem button key={ key++ }>
                         <ListItemText inset primary={repo.name} />
                     </ListItem>
@@ -29,8 +31,9 @@ function RepositoriesList(props: Props) {
     );
 }
 
-RepositoriesList.propTypes = {
-  repositoriesNames: PropTypes.array.isRequired,
-};
+const enhance = compose(
+    withRequest(({ username }) => fetchUserRepos(username)),
+    branch(({ isLoading }) => isLoading, renderNothing),
+);
 
-export default RepositoriesList;
+export default enhance(RepositoriesList);
