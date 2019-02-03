@@ -1,9 +1,8 @@
-// @flow
 import React from 'react';
 import styled from 'styled-components';
 import ErrorIcon from '@material-ui/icons/Error';
 
-import { Text } from "../UserInfo/UserInfo";
+import { Text } from "src/components/UserInfo/UserInfo";
 
 const ErrorContainer = styled.div`
     margin: auto;

@@ -1,12 +1,11 @@
-// @flow
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle }  from 'styled-components';
 import { Flex } from 'rebass';
 
-import ErrorComponent from '../ErrorComponent/ErrorComponent';
-import AllUserInfo from '../AllUserInfo/AllUserInfo';
+import ErrorComponent from 'src/components/ErrorComponent/ErrorComponent';
+import AllUserInfo from 'src/components/AllUserInfo/AllUserInfo';
 
 type Props = {
     history: Object,

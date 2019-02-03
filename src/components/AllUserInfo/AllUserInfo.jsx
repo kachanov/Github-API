@@ -1,13 +1,12 @@
-// @flow
 import React from 'react';
 import { compose, branch, renderNothing } from 'recompose';
 import { Flex } from 'rebass';
 
-import Avatar from '../Avatar/Avatar';
-import UserInfo from '../UserInfo/UserInfo';
-import RepositoriesList from '../RepositoriesList/RepositoriesList';
-import withRequest from '../../utils/withRequest';
-import { fetchUser } from '../../utils/api';
+import Avatar from 'src/components/Avatar/Avatar';
+import UserInfo from 'src/components/UserInfo/UserInfo';
+import RepositoriesList from 'src/components/RepositoriesList/RepositoriesList';
+import withRequest from 'src/utils/withRequest';
+import { fetchUser } from 'src/utils/api';
 
 type Props = {
     fetchUserInfo: (username: string) => void,
