@@ -4,8 +4,8 @@ import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle }  from 'styled-components';
 import { Flex } from 'rebass';
 
-import ErrorComponent from 'src/components/ErrorComponent/ErrorComponent';
-import AllUserInfo from 'src/components/AllUserInfo/AllUserInfo';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import AllUserInfo from '../AllUserInfo/AllUserInfo';
 
 type Props = {
     history: Object,

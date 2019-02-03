@@ -2,8 +2,8 @@ import React from 'react';
 import { branch, compose, renderNothing } from 'recompose';
 import styled from 'styled-components';
 
-import withRequest from 'src/utils/withRequest';
-import { fetchUserRepos } from 'src/utils/api';
+import withRequest from '../../utils/withRequest';
+import { fetchUserRepos } from '../../utils/api';
 
 type Props = {
     username: string,
