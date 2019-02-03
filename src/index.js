@@ -1,9 +1,7 @@
-// @flow
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
-import { Switch, Route, Router , Redirect} from "react-router-dom";
+import { Switch, Route, Router , Redirect } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
 import GithubAPI from './components/MainComponent/GithubAPI';
