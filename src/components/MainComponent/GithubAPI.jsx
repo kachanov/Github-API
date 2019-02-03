@@ -2,7 +2,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
-import styled from 'styled-components';
+import styled, { createGlobalStyle }  from 'styled-components';
 import { Flex } from 'rebass';
 
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
@@ -13,6 +13,12 @@ type Props = {
     handleInputChange: Function,
     username: string,
 };
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #C0E870;
+  }
+`;
 
 const Heading = styled.h1`
     text-align: center;
@@ -50,6 +56,7 @@ const Button = styled.button`
 function GithubAPI({ handleInputChange, history, username }: Props){
     return (
         <React.Fragment>
+            <GlobalStyle/>
             <Heading>Github API Example</Heading>
             <Flex justifyContent='center'>
                 <Input
