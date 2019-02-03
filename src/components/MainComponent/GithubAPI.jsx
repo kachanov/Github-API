@@ -47,24 +47,30 @@ const Button = styled.button`
     background-color: #DAF3A9;
 `;
 
-function GithubAPI(props: Props){
+function GithubAPI({ handleInputChange, history, username }: Props){
     return (
         <React.Fragment>
             <Heading>Github API Example</Heading>
             <Flex justifyContent='center'>
                 <Input
-                    onChange={(event) => props.handleInputChange(event.target.value)}
+                    onChange={(event) =>
+                        handleInputChange(event.target.value)
+                    }
                     placeholder='username'
                     spellcheck='false'
                 />
-                <Button onClick={() => props.history.push(`home/user/${props.username}`)}>
+                <Button
+                    onClick={() =>
+                        history.push(`home/user/${username}`)
+                    }
+                >
                     Search
                 </Button>
             </Flex>
             <Switch>
                 <Route
-                    path={`/home/user/${props.username}`}
-                    render={() => <AllUserInfo username={props.username}/>}
+                    path={`/home/user/${username}`}
+                    render={() => <AllUserInfo username={username}/>}
                 />
                 <Route exact path="/home/error" component={ErrorComponent} />
             </Switch>

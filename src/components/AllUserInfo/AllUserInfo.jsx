@@ -6,34 +6,26 @@ import { Flex } from 'rebass';
 import Avatar from '../Avatar/Avatar';
 import UserInfo from '../UserInfo/UserInfo';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
-import styles from '../MainComponent/GithubAPI.css';
 import withRequest from '../../utils/withRequest';
-import {fetchUser} from '../../utils/api';
+import { fetchUser } from '../../utils/api';
 
 type Props = {
     fetchUserInfo: (username: string) => void,
     data: Object,
 };
 
-function AllUserInfo(props: Props) {
-    const { data } = props;
-
+function AllUserInfo({ data }: Props) {
     return(
         <Flex justifyContent='center'>
             <Avatar avatarURL={data.avatar_url} />
-            <div className={styles.infoAndRepos}>
-                <div>
-                    {data.name &&
-                    <UserInfo
-                        username={data.name}
-                        location={data.location}
-                        createdAt={new Date(data.created_at).toLocaleDateString()}
-                    />}
-                </div>
-                <div>
-                    <RepositoriesList username={data.login} />
-                </div>
-            </div>
+            <Flex flexDirection='column'>
+                <UserInfo
+                    username={data.name}
+                    location={data.location}
+                    createdAt={new Date(data.created_at).toLocaleDateString()}
+                />
+                <RepositoriesList username={data.login} />
+            </Flex>
         </Flex>
     );
 }

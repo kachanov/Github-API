@@ -1,8 +1,0 @@
-:local(.error) {
-    margin: auto;
-    width: 300px;
-    padding: 20px;
-    border: 3px solid red;
-    border-radius: 25px;
-    background-color: #ffaba1;
-}

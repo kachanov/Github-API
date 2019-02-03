@@ -2,10 +2,9 @@
 import React from 'react';
 import { branch, compose, renderNothing } from 'recompose';
 import styled from 'styled-components';
-import withRequest from '../../utils/withRequest';
-import { fetchUserRepos } from '../../utils/api';
 
-import styles from './RepositoriesList.css';
+import withRequest from 'utils/withRequest';
+import { fetchUserRepos } from 'utils/api';
 
 type Props = {
     username: string,
@@ -28,17 +27,23 @@ const ListItem = styled.div`
     } 
 `;
 
-function RepositoriesList(props: Props) {
-    let key = 0;
+const ReposContainer = styled.div`
+    overflow: auto;
+    height: 300px;
+    margin-top: 50px;
+    box-shadow: 10px 10px 25px -8px rgba(0,0,0,0.5);
+    background-color: #DAF3A9;
+`;
 
+function RepositoriesList({ data }: Props) {
     return(
-        <div className={styles.repos}>
+        <ReposContainer>
             <List>
-                {props.data.map(repo => {
-                    return <ListItem key={ key++ }>{repo.name}</ListItem>
-                })}
+                {data.map(repository =>
+                    <ListItem key={repository.id}>{repository.name}</ListItem>
+                )}
             </List>
-        </div>
+        </ReposContainer>
     );
 }
 
