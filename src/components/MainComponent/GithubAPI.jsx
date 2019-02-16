@@ -56,6 +56,13 @@ const Button = styled.button`
 function GithubAPI({ handleInputChange, history, username, match }: Props){
     const textInput = React.createRef();
 
+    function handleEnter(event) {
+      if (event.keyCode === 13) {
+          handleInputChange(textInput.current.value);
+          history.push(`${match.url}/${textInput.current.value}`);
+      }
+    }
+
     return (
         <React.Fragment>
             <GlobalStyle/>
@@ -65,6 +72,7 @@ function GithubAPI({ handleInputChange, history, username, match }: Props){
                     placeholder='username'
                     spellcheck='false'
                     ref={textInput}
+                    onKeyUp={handleEnter}
                 />
                 <Button
                     onClick={() => {
