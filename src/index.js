@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
 import { Switch, Route, Router , Redirect } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 
@@ -14,14 +13,12 @@ if (Root === null) {
 
 ReactDOM.render(
     <Router history={history}>
-        <Provider>
-            <Switch>
-                <Route exact path="/">
-                    <Redirect to="/home"/>
-                </Route>
-                <Route path="/home" component={GithubAPI} />
-            </Switch>
-        </Provider>
+        <Switch>
+            <Route exact path="/">
+                <Redirect to="/home"/>
+            </Route>
+            <Route path="/home" component={GithubAPI} />
+        </Switch>
     </Router>,
     Root
 );

@@ -100,7 +100,7 @@ function GithubAPI({ handleInputChange, history, username, match }: Props){
 }
 
 const initialState = {
-    username: undefined,
+    username: '',
 };
 
 const enhance = compose(
