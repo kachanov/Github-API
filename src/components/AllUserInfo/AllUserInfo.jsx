@@ -30,7 +30,9 @@ function AllUserInfo({ data }: Props) {
 }
 
 const enhance = compose(
-    withRequest(({ username }) => fetchUser(username)),
+    withRequest(({ username }) => fetchUser(username), {
+      shouldDataUpdate: (prevProps, props) => prevProps.username !== props.username,
+    }),
     branch(({ isLoading }) => isLoading, renderNothing),
 );
 

@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle }  from 'styled-components';
 import { Flex } from 'rebass';
+import { ROUTES } from "../../routes";
 
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import AllUserInfo from '../AllUserInfo/AllUserInfo';
@@ -52,40 +53,41 @@ const Button = styled.button`
     background-color: #DAF3A9;
 `;
 
-function GithubAPI({ handleInputChange, history, username }: Props){
+function GithubAPI({ handleInputChange, history, username, match }: Props){
+    const textInput = React.createRef();
+
     return (
         <React.Fragment>
             <GlobalStyle/>
             <Heading>Github API Example</Heading>
             <Flex justifyContent='center'>
                 <Input
-                    onChange={(event) =>
-                        handleInputChange(event.target.value)
-                    }
                     placeholder='username'
                     spellcheck='false'
+                    ref={textInput}
                 />
                 <Button
-                    onClick={() =>
-                        history.push(`home/user/${username}`)
-                    }
+                    onClick={() => {
+                        handleInputChange(textInput.current.value);
+                        history.push(`${match.url}/${textInput.current.value}`);
+                    }}
                 >
                     Search
                 </Button>
             </Flex>
             <Switch>
                 <Route
-                    path={`/home/user/${username}`}
+                    path={`${ROUTES.USERNAME}`}
                     render={() => <AllUserInfo username={username}/>}
                 />
-                <Route exact path="/home/error" component={ErrorComponent} />
+                <Route exact path="error" component={ErrorComponent} />
             </Switch>
         </React.Fragment>
     );
 }
 
 const initialState = {
-    username: '',
+    username: undefined,
 };
 
 const enhance = compose(
