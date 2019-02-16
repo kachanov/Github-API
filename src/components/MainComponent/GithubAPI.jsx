@@ -78,9 +78,14 @@ function GithubAPI({ handleInputChange, history, username, match }: Props){
             <Switch>
                 <Route
                     path={`${ROUTES.USERNAME}`}
-                    render={() => <AllUserInfo username={username}/>}
+                    render={() =>
+                        <AllUserInfo
+                          errorPlaceholder={ErrorComponent}
+                          username={username}
+                          {...history}
+                        />
+                    }
                 />
-                <Route exact path="error" component={ErrorComponent} />
             </Switch>
         </React.Fragment>
     );
