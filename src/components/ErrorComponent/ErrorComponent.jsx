@@ -13,18 +13,16 @@ const ErrorContainer = styled.div`
     background-color: #ffaba1;
 `;
 
-function ErrorComponent() {
-    return(
-        <ErrorContainer>
-            <Text variant="headline">
-                <ErrorIcon /> Error!
-            </Text>
-            <Text variant="headline">
-                Could not find such user.
-                Please check entered username.
-            </Text>
-        </ErrorContainer>
-    );
-}
+const ErrorComponent = (
+    <ErrorContainer>
+        <Text variant="headline">
+            <ErrorIcon /> Error!
+        </Text>
+        <Text variant="headline">
+            Could not find such user.
+            Please check entered username.
+        </Text>
+    </ErrorContainer>
+);
 
 export default ErrorComponent;

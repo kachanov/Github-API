@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { branch, compose, renderNothing } from 'recompose';
 import styled from 'styled-components';

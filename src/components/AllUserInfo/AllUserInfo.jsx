@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { compose, branch, renderNothing } from 'recompose';
 import { Flex } from 'rebass';
@@ -12,11 +14,12 @@ import ErrorComponent from "../ErrorComponent/ErrorComponent";
 type Props = {
     fetchUserInfo: (username: string) => void,
     data: Object,
+    error: Object,
 };
 
 function AllUserInfo({ data, error }: Props) {
     if (error) {
-      return <ErrorComponent />
+      return ErrorComponent;
     }
 
     return(

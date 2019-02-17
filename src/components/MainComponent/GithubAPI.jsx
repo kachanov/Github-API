@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
@@ -10,6 +12,7 @@ import AllUserInfo from '../AllUserInfo/AllUserInfo';
 
 type Props = {
     history: Object,
+    match: Object,
     handleInputChange: Function,
     username: string,
 };
@@ -54,7 +57,7 @@ const Button = styled.button`
 `;
 
 function GithubAPI({ handleInputChange, history, username, match }: Props){
-    const textInput = React.createRef();
+    const textInput: Object = React.createRef();
 
     function handleEnter(event) {
       if (event.keyCode === 13) {
