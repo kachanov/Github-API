@@ -32,6 +32,7 @@ const Heading = styled.h1`
 const Input = styled.input`
     width: 200px;
     height: 30px;
+    margin-bottom: 20px;
     border: none;
     border-radius: 3px;
     background: #DAF3A9;
