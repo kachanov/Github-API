@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import LocationIcon from '@material-ui/icons/LocationOn';
@@ -40,11 +39,5 @@ function UserInfo({ username, location, createdAt }: Props) {
         </Container>
     );
 }
-
-UserInfo.propTypes = {
-    username: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-};
 
 export default UserInfo;

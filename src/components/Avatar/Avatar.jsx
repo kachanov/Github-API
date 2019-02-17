@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Image = styled.img`
@@ -21,9 +20,5 @@ function Avatar({ avatarURL }: Props) {
       <Image src={avatarURL} alt="avatar" />
     </div>
 }
-
-Avatar.propTypes = {
-    avatarURL: PropTypes.string.isRequired,
-};
 
 export default Avatar;
