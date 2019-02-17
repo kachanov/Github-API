@@ -26,6 +26,10 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "flow-bin": "^0.80.0"
+    "flow-bin": "^0.80.0",
+    "prettier": "^1.16.4"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
