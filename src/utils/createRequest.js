@@ -1,17 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import omit from 'lodash/omit';
 import { shallowEqual, isPromise } from './utils';
 
-const propTypes = {
-  component: PropTypes.func,
-  render: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  onFulfilled: PropTypes.func,
-  onRejected: PropTypes.func
-};
+const defaultProps = [
+  'component',
+  'render',
+  'children',
+  'onFulfilled',
+  'onRejected'
+];
 
-const getRequestProps = props => omit(props, Object.keys(propTypes));
+const getRequestProps = props => omit(props, Object.keys(defaultProps));
 
 const defaultOptions = {
   debounce: () => false,
@@ -26,8 +25,6 @@ function createRequest(initialValue, mapPropsToRequest, options) {
   );
 
   return class RequestComponent extends React.Component {
-    static propTypes = propTypes;
-
     static defaultProps = {
       onFulfilled: () => {},
       onRejected: () => {}
@@ -38,6 +35,7 @@ function createRequest(initialValue, mapPropsToRequest, options) {
       this.timeout = null;
       this.requestProps = getRequestProps(props);
       this.request = mapPropsToRequest(this.requestProps);
+
       this.state = {
         isLoading: isPromise(this.request),
         args: {},
@@ -52,10 +50,13 @@ function createRequest(initialValue, mapPropsToRequest, options) {
 
     componentDidUpdate() {
       const nextRequestProps = getRequestProps(this.props);
+
       if (shouldDataUpdate(this.requestProps, nextRequestProps)) {
         const wait = debounce(this.requestProps, nextRequestProps);
+
         if (Number.isInteger(wait) && wait > 0) {
           clearTimeout(this.timeout);
+
           this.timeout = setTimeout(() => {
             this.requestProps = nextRequestProps;
             this.fetchData(nextRequestProps);
@@ -109,11 +110,11 @@ function createRequest(initialValue, mapPropsToRequest, options) {
     updateData = () => this.fetchData();
 
     render() {
-      const { render, component, children } = this.props;
+      const { render, component } = this.props;
       const renderProps = { ...this.state, updateData: this.updateData };
-      if (component) return React.createElement(component, renderProps);
+
       if (render) return render(renderProps);
-      if (typeof children === 'function') return children(renderProps);
+
       return null;
     }
   };

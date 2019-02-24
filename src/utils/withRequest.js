@@ -1,8 +1,6 @@
 import React from 'react';
-import isFunction from 'lodash/isFunction';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import createRequest from './createRequest';
-import { getDisplayName } from './utils';
 
 const defaultOptions = {
   initialValue: null,
@@ -17,15 +15,13 @@ function withRequest(mapPropsToRequest, options) {
   );
 
   return Component => {
-    const componentDisplayName = getDisplayName(Component);
-
     class RequestHOC extends React.Component {
-      static displayName = `withRequest(${componentDisplayName})`;
-
       constructor(props) {
         super(props);
         this.RequestComponent = createRequest(
-          isFunction(initialValue) ? initialValue(initialValue) : initialValue,
+          typeof initialValue === 'function'
+            ? initialValue(initialValue)
+            : initialValue,
           mapPropsToRequest,
           requestOptions
         );
