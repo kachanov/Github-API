@@ -1,55 +1,48 @@
 // @flow
 
-import React from "react";
-import { connect } from 'react-redux';
+import React from 'react';
+import { compose, branch, renderNothing } from 'recompose';
+import { Flex } from 'rebass';
 
-import Avatar from "../Avatar/Avatar";
-import UserInfo from "../UserInfo/UserInfo";
-import RepositoriesList from "../RepositoriesList/RepositoriesList";
-import { fetchUserInfo } from "../../actions/actions";
-import styles from "../MainComponent/GithubAPI.css";
-
-import type { storeType } from "../../types/storeType";
-
+import Avatar from '../Avatar/Avatar';
+import UserInfo from '../UserInfo/UserInfo';
+import RepositoriesList from '../RepositoriesList/RepositoriesList';
+import withRequest from '../../utils/withRequest';
+import { fetchUser } from '../../utils/api';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
 
 type Props = {
-    fetchUserInfo: (username: string) => void,
-    store: storeType,
-    userData: Object,
+  fetchUserInfo: (username: string) => void,
+  data: Object,
+  error: Object
 };
 
-function AllUserInfo(props: Props) {
-    const { avatarURL, name, location, createdAt, repositoriesNames} = props.userData;
+function AllUserInfo({ data, error }: Props) {
+  if (error) {
+    return ErrorComponent;
+  }
 
-    return(
-        <div className={styles.info}>
-            <div>
-                {avatarURL && <Avatar avatarURL={avatarURL} />}
-            </div>
-            <div className={styles.infoAndRepos}>
-                <div>
-                    {name &&
-                    <UserInfo
-                        username={name}
-                        location={location}
-                        createdAt={createdAt}
-                    />}
-                </div>
-                <div>
-                    {repositoriesNames.length > 0 &&
-                    <RepositoriesList repositoriesNames={repositoriesNames} />}
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <Flex justifyContent='center'>
+      <Avatar avatarURL={data.avatar_url} />
+      <Flex flexDirection='column'>
+        <UserInfo
+          username={data.name}
+          location={data.location}
+          createdAt={new Date(data.created_at).toLocaleDateString()}
+        />
+        <RepositoriesList username={data.login} />
+      </Flex>
+    </Flex>
+  );
 }
 
-const mapStateToProps = state => ({
-    store: state.store,
-});
+const enhance = compose(
+  withRequest(({ username }) => fetchUser(username), {
+    shouldDataUpdate: (prevProps, props) =>
+      prevProps.username !== props.username
+  }),
+  branch(({ isLoading }) => isLoading, renderNothing)
+);
 
-const mapDispatchToProps = dispatch => ({
-    fetchUserInfo: params => dispatch(fetchUserInfo(params)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllUserInfo);
+export default enhance(AllUserInfo);
