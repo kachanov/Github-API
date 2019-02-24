@@ -1,6 +1,10 @@
 # Github API Example
 
-Simple example of interacting with the [Github API](https://developer.github.com/v3/), built using JS and React + Redux.
+Simple example of interacting with the [Github API](https://developer.github.com/v3/), built using JS and React.
+
+![alt text](/images/screenshot1.png)
+
+![alt text](/images/screenshot2.png)
 
 # Install
 
