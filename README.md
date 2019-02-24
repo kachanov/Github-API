@@ -6,6 +6,10 @@ Simple example of interacting with the [Github API](https://developer.github.com
 
 ![alt text](/images/screenshot2.png)
 
+# Try now
+
+[Github Pages](https://kachanov.github.io/Github-API/)
+
 # Install
 
 Download or clone project from this git repository, go into project directory and run follow command:
