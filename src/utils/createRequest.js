@@ -110,7 +110,7 @@ function createRequest(initialValue, mapPropsToRequest, options) {
     updateData = () => this.fetchData();
 
     render() {
-      const { render, component } = this.props;
+      const { render } = this.props;
       const renderProps = { ...this.state, updateData: this.updateData };
 
       if (render) return render(renderProps);
