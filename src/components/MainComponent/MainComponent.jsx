@@ -57,7 +57,7 @@ const Button = styled.button`
   background-color: #daf3a9;
 `;
 
-function GithubAPI({ handleInputChange, history, username, match }: Props) {
+function MainComponent({ handleInputChange, history, username, match }: Props) {
   const textInput: Object = React.createRef();
 
   function handleEnter(event) {
@@ -113,4 +113,4 @@ const enhance = compose(
   })
 );
 
-export default enhance(GithubAPI);
+export default enhance(MainComponent);

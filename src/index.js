@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Switch, Route, Router, Redirect } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-import GithubAPI from './components/MainComponent/GithubAPI';
+import MainComponent from './components/MainComponent/MainComponent';
 
 const history = createBrowserHistory();
 const Root = document.getElementById('root');
@@ -17,7 +17,7 @@ ReactDOM.render(
       <Route exact path="/">
         <Redirect to="/home" />
       </Route>
-      <Route path="/home" component={GithubAPI} />
+      <Route path="/home" component={MainComponent} />
     </Switch>
   </Router>,
   Root
