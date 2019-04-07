@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { compose, branch, renderNothing } from 'recompose';
+import { compose, branch, renderComponent } from 'recompose';
 import { Flex } from 'rebass';
 
 import Avatar from '../Avatar/Avatar';
@@ -10,6 +10,8 @@ import RepositoriesList from '../RepositoriesList/RepositoriesList';
 import withRequest from '../../utils/withRequest';
 import { fetchUser } from '../../utils/api';
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import { Spinner } from '../Spinner/Spinner';
+
 
 type Props = {
   fetchUserInfo: (username: string) => void,
@@ -42,7 +44,7 @@ const enhance = compose(
     shouldDataUpdate: (prevProps, props) =>
       prevProps.username !== props.username
   }),
-  branch(({ isLoading }) => isLoading, renderNothing)
+  branch(({ isLoading }) => isLoading, renderComponent(Spinner))
 );
 
 export default enhance(AllUserInfo);
