@@ -1,11 +1,9 @@
 {
   "name": "github_api_test",
-  "version": "0.1.0",
+  "version": "1.0",
   "private": true,
   "homepage": "http://kachanov.github.io/Github-API/",
   "dependencies": {
-    "@material-ui/core": "^3.0.3",
-    "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
     "history": "latest",

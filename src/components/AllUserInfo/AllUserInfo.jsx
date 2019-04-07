@@ -1,15 +1,17 @@
 // @flow
 
 import React from 'react';
-import { compose, branch, renderNothing } from 'recompose';
 import { Flex } from 'rebass';
+import { compose, branch, renderComponent } from 'recompose';
 
 import Avatar from '../Avatar/Avatar';
 import UserInfo from '../UserInfo/UserInfo';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
+import ErrorComponent from '../ErrorComponent/ErrorComponent';
+import { Spinner } from '../Spinner/Spinner';
 import withRequest from '../../utils/withRequest';
 import { fetchUser } from '../../utils/api';
-import ErrorComponent from '../ErrorComponent/ErrorComponent';
+
 
 type Props = {
   fetchUserInfo: (username: string) => void,
@@ -42,7 +44,7 @@ const enhance = compose(
     shouldDataUpdate: (prevProps, props) =>
       prevProps.username !== props.username
   }),
-  branch(({ isLoading }) => isLoading, renderNothing)
+  branch(({ isLoading }) => isLoading, renderComponent(Spinner))
 );
 
 export default enhance(AllUserInfo);

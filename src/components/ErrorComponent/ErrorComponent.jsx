@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ErrorIcon from '@material-ui/icons/Error';
 
 import { Text } from '../UserInfo/UserInfo';
+
 
 const ErrorContainer = styled.div`
   margin: auto;
@@ -16,7 +16,7 @@ const ErrorContainer = styled.div`
 const ErrorComponent = (
   <ErrorContainer>
     <Text variant='headline'>
-      <ErrorIcon /> Error!
+      Error!
     </Text>
     <Text variant='headline'>
       Could not find such user. Please check entered username.

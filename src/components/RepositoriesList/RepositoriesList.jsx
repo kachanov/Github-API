@@ -1,11 +1,12 @@
 // @flow
 
 import React from 'react';
-import { branch, compose, renderNothing } from 'recompose';
 import styled from 'styled-components';
+import { branch, compose, renderNothing } from 'recompose';
 
 import withRequest from '../../utils/withRequest';
 import { fetchUserRepos } from '../../utils/api';
+
 
 type Props = {
   username: string,
