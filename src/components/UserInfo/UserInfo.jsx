@@ -3,7 +3,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import LocationIcon from '@material-ui/icons/LocationOn';
 
 export const Text = styled.p`
   font-family: 'Menlo';
@@ -29,7 +28,7 @@ function UserInfo({ username, location, createdAt }: Props) {
     <Container>
       <Text variant='headline'>Name: {username}</Text>
       <Text variant='headline'>
-        <LocationIcon /> Location: {location ? location : 'Unknown'}
+        Location: {location ? location : 'Unknown'}
       </Text>
       <Text variant='headline'>Created at: {createdAt}</Text>
     </Container>
