@@ -3,17 +3,17 @@ import { Flex } from 'rebass';
 import { compose, branch, renderComponent } from 'recompose';
 
 import Avatar from '../Avatar/Avatar';
+import Spinner from '../Spinner/Spinner';
 import UserInfo from '../UserInfo/UserInfo';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
-import ErrorComponent from '../ErrorComponent/ErrorComponent';
-import { Spinner } from '../Spinner/Spinner';
-import withRequest from '../../utils/withRequest';
-import { fetchUser } from '../../utils/api';
+import { withRequest } from '../../utils';
+import { fetchUser } from '../../api';
 
 
 function AllUserInfo({ data, error }) {
   if (error) {
-    return ErrorComponent;
+    return ErrorMessage;
   }
 
   return (

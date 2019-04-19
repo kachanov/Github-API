@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import AllUserInfo from '../AllUserInfo/AllUserInfo';
 import { ROUTES } from '../../routes';
 
@@ -84,7 +83,6 @@ function MainComponent({ handleInputChange, history, username, match }) {
           path={`${ROUTES.USERNAME}`}
           render={() => (
             <AllUserInfo
-              errorPlaceholder={ErrorComponent}
               username={username}
               {...history}
             />

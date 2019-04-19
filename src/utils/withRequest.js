@@ -1,7 +1,7 @@
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
-import createRequest from './createRequest';
+import { createRequest } from './createRequest';
 
 
 const defaultOptions = {
@@ -44,4 +44,4 @@ function withRequest(mapPropsToRequest, options) {
   };
 }
 
-export default withRequest;
+export { withRequest };

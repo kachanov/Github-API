@@ -18,11 +18,11 @@ const Container = styled.div`
 function UserInfo({ username, location, createdAt }) {
   return (
     <Container>
-      <Text variant='headline'>Name: {username}</Text>
-      <Text variant='headline'>
+      <Text>Name: {username}</Text>
+      <Text>
         Location: {location ? location : 'Unknown'}
       </Text>
-      <Text variant='headline'>Created at: {createdAt}</Text>
+      <Text>Created at: {createdAt}</Text>
     </Container>
   );
 }

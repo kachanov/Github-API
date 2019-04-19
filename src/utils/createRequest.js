@@ -122,4 +122,4 @@ function createRequest(initialValue, mapPropsToRequest, options) {
   };
 }
 
-export default createRequest;
+export { createRequest };

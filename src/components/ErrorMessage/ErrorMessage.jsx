@@ -13,7 +13,7 @@ const ErrorContainer = styled.div`
   background-color: #ffaba1;
 `;
 
-const ErrorComponent = (
+const ErrorMessage = (
   <ErrorContainer>
     <Text variant='headline'>
       Error!
@@ -24,4 +24,4 @@ const ErrorComponent = (
   </ErrorContainer>
 );
 
-export default ErrorComponent;
+export default ErrorMessage;

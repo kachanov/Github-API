@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { branch, compose, renderNothing } from 'recompose';
 
-import withRequest from '../../utils/withRequest';
-import { fetchUserRepos } from '../../utils/api';
+import { withRequest } from '../../utils';
+import { fetchUserRepos } from '../../api';
 
 
 const List = styled.div`
@@ -30,11 +30,11 @@ const ReposContainer = styled.div`
   background-color: #daf3a9;
 `;
 
-function RepositoriesList({ data }) {
+function RepositoriesList({ data: repositories }) {
   return (
     <ReposContainer>
       <List>
-        {data.map(repository => (
+        {repositories.map(repository => (
           <ListItem key={repository.id}>{repository.name}</ListItem>
         ))}
       </List>
