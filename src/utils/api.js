@@ -1,15 +1,13 @@
-// @flow
-
 import axios from 'axios';
 
-export function fetchUser(username: string) {
+export function fetchUser(username) {
   return axios
     .get(`https://api.github.com/users/${username}`)
-    .then(({ data }: Object) => data);
+    .then(({ data }) => data);
 }
 
-export function fetchUserRepos(username: string) {
+export function fetchUserRepos(username) {
   return axios
     .get(`https://api.github.com/users/${username}/repos`)
-    .then(({ data }: Object) => data);
+    .then(({ data }) => data);
 }

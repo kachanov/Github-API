@@ -1,5 +1,6 @@
 import isFunction from 'lodash/isFunction';
 
+
 export function shallowEqual(objectA, objectB) {
   if (objectA === objectB) return true;
 

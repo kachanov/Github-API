@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import styled from 'styled-components';
 
@@ -12,11 +10,7 @@ const Image = styled.img`
   background-color: #ffffff;
 `;
 
-type Props = {
-  avatarURL: string
-};
-
-function Avatar({ avatarURL }: Props) {
+function Avatar({ avatarURL }) {
   return (
     <div>
       <Image src={avatarURL} alt='avatar' />

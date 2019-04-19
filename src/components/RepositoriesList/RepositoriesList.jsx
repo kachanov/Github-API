@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import styled from 'styled-components';
 import { branch, compose, renderNothing } from 'recompose';
@@ -7,11 +5,6 @@ import { branch, compose, renderNothing } from 'recompose';
 import withRequest from '../../utils/withRequest';
 import { fetchUserRepos } from '../../utils/api';
 
-
-type Props = {
-  username: string,
-  data: Array<Object>
-};
 
 const List = styled.div`
   background-color: #daf3a9;
@@ -37,7 +30,7 @@ const ReposContainer = styled.div`
   background-color: #daf3a9;
 `;
 
-function RepositoriesList({ data }: Props) {
+function RepositoriesList({ data }) {
   return (
     <ReposContainer>
       <List>

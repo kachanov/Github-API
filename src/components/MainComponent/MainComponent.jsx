@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { Flex } from 'rebass';
 import { Switch, Route } from 'react-router-dom';
@@ -10,13 +8,6 @@ import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import AllUserInfo from '../AllUserInfo/AllUserInfo';
 import { ROUTES } from '../../routes';
 
-
-type Props = {
-  history: Object,
-  match: Object,
-  handleInputChange: Function,
-  username: string
-};
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -58,8 +49,8 @@ const Button = styled.button`
   background-color: #daf3a9;
 `;
 
-function MainComponent({ handleInputChange, history, username, match }: Props) {
-  const textInput: Object = React.createRef();
+function MainComponent({ handleInputChange, history, username, match }) {
+  const textInput = React.createRef();
 
   function handleEnter(event) {
     if (event.keyCode === 13) {

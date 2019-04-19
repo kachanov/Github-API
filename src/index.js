@@ -5,6 +5,7 @@ import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 
 import MainComponent from './components/MainComponent/MainComponent';
 
+
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
 
 const Root = document.getElementById('root');

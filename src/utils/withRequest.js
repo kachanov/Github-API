@@ -3,6 +3,7 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import createRequest from './createRequest';
 
+
 const defaultOptions = {
   initialValue: null,
   shouldDataUpdate: () => false

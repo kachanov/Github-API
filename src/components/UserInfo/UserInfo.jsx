@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,13 +15,7 @@ const Container = styled.div`
   padding: 10px;
 `;
 
-type Props = {
-  username: string,
-  location: string,
-  createdAt: string
-};
-
-function UserInfo({ username, location, createdAt }: Props) {
+function UserInfo({ username, location, createdAt }) {
   return (
     <Container>
       <Text variant='headline'>Name: {username}</Text>

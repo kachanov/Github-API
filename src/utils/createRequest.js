@@ -3,6 +3,7 @@ import omit from 'lodash/omit';
 
 import { shallowEqual, isPromise } from './utils';
 
+
 const defaultProps = [
   'component',
   'render',
