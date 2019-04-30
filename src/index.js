@@ -15,10 +15,10 @@ if (Root === null) {
 ReactDOM.render(
   <BrowserRouter basename={process.env.PUBLIC_URL} history={hashHistory}>
     <Switch>
-      <Route exact path="/">
-        <Redirect to="/home" />
+      <Route exact path='/'>
+        <Redirect to='/home' />
       </Route>
-      <Route path="/home" component={MainComponent} />
+      <Route path='/home' component={MainComponent} />
     </Switch>
   </BrowserRouter>,
   Root

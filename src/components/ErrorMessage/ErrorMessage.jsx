@@ -13,8 +13,8 @@ const ErrorContainer = styled.div`
 
 const ErrorMessage = () => (
   <ErrorContainer>
-    <Text variant="headline">Error!</Text>
-    <Text variant="headline">
+    <Text variant='headline'>Error!</Text>
+    <Text variant='headline'>
       Could not find such user. Please check entered username.
     </Text>
   </ErrorContainer>

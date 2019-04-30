@@ -28,9 +28,9 @@ function UserInfo({ data, error }) {
   }
 
   return (
-    <Flex justifyContent="center">
+    <Flex justifyContent='center'>
       <Avatar avatarURL={data.avatar_url} />
-      <Flex flexDirection="column">
+      <Flex flexDirection='column'>
         <Container>
           <Text>Name: {data.name}</Text>
           <Text>Location: {data.location ? data.location : 'Unknown'}</Text>

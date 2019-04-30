@@ -51,7 +51,7 @@ function App({ history, match }) {
     <React.Fragment>
       <GlobalStyle />
       <Heading>Github API Example</Heading>
-      <Flex justifyContent="center">
+      <Flex justifyContent='center'>
         <Formik
           initialValues={{ username: '' }}
           onSubmit={({ username }) => history.push(`${match.url}/${username}`)}
@@ -59,8 +59,8 @@ function App({ history, match }) {
           {({ values, handleSubmit, handleChange }) => (
             <form onSubmit={handleSubmit}>
               <Input
-                name="username"
-                placeholder="username"
+                name='username'
+                placeholder='username'
                 value={values.username}
                 onChange={handleChange}
               />
