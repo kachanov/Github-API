@@ -9,9 +9,9 @@ export const Text = styled.p`
 
 const Container = styled.div`
   margin-top: 50px;
-  box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
-  background-color: #daf3a9;
   padding: 10px;
+  background-color: #daf3a9;
+  box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
 `;
 
 function UserInfo({ username, location, createdAt }) {

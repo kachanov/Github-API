@@ -5,8 +5,8 @@ const Image = styled.img`
   width: 400px;
   height: 400px;
   margin: 50px;
-  background-color: #ffffff;
   border-radius: 300px;
+  background-color: #ffffff;
   box-shadow: 5px 5px 10px -5px #666;
 `;
 

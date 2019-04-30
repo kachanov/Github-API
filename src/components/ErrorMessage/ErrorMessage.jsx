@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Text } from '../UserInfo/UserInfo';
 
 const ErrorContainer = styled.div`
-  margin: auto;
   width: 300px;
+  margin: auto;
   padding: 20px;
   border: 3px solid red;
   border-radius: 25px;

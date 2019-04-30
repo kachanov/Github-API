@@ -5,8 +5,8 @@ import { withRequest } from '../../utils';
 import { fetchUserRepos } from '../../api';
 
 const List = styled.div`
-  background-color: #daf3a9;
   height: 10px;
+  background-color: #daf3a9;
 `;
 
 const ListItem = styled.div`
@@ -24,8 +24,8 @@ const ReposContainer = styled.div`
   overflow: auto;
   height: 300px;
   margin-top: 50px;
-  box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
   background-color: #daf3a9;
+  box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
 `;
 
 function RepositoriesList({ data: repositories }) {
