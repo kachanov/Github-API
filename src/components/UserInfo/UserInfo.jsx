@@ -22,24 +22,21 @@ const Container = styled.div`
   box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
 `;
 
-function UserInfo({
-  data: { avatar_url, name: username, location, created_at, login },
-  error
-}) {
+function UserInfo({ data, error }) {
   if (error) {
-    return ErrorMessage;
+    return <ErrorMessage />;
   }
 
   return (
     <Flex justifyContent="center">
-      <Avatar avatarURL={avatar_url} />
+      <Avatar avatarURL={data.avatar_url} />
       <Flex flexDirection="column">
         <Container>
-          <Text>Name: {username}</Text>
-          <Text>Location: {location ? location : 'Unknown'}</Text>
-          <Text>Created at: {formatDate(created_at)}</Text>
+          <Text>Name: {data.name}</Text>
+          <Text>Location: {data.location ? data.location : 'Unknown'}</Text>
+          <Text>Created at: {formatDate(data.created_at)}</Text>
         </Container>
-        <RepositoriesList username={login} />
+        <RepositoriesList username={data.login} />
       </Flex>
     </Flex>
   );

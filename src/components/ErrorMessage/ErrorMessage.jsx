@@ -11,7 +11,7 @@ const ErrorContainer = styled.div`
   background-color: #ffaba1;
 `;
 
-const ErrorMessage = (
+const ErrorMessage = () => (
   <ErrorContainer>
     <Text variant="headline">Error!</Text>
     <Text variant="headline">

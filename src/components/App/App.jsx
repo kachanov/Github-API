@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex } from 'rebass';
+import { Formik } from 'formik';
 import { Switch, Route } from 'react-router-dom';
-import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle } from 'styled-components';
 import AllUserInfo from '../UserInfo/UserInfo';
 import { ROUTES } from '../../routes';
@@ -46,55 +46,39 @@ const Button = styled.button`
   font-size: 16px;
 `;
 
-function App({ handleInputChange, history, username, match }) {
-  const textInput = React.createRef();
-
-  // @todo Add formik
-  function handleEnter(event) {
-    if (event.keyCode === 13) {
-      handleInputChange(textInput.current.value);
-      history.push(`${match.url}/${textInput.current.value}`);
-    }
-  }
-
+function App({ history, match }) {
   return (
     <React.Fragment>
       <GlobalStyle />
       <Heading>Github API Example</Heading>
       <Flex justifyContent="center">
-        <Input
-          placeholder="username"
-          spellcheck="false"
-          ref={textInput}
-          onKeyUp={handleEnter}
-        />
-        <Button
-          onClick={() => {
-            handleInputChange(textInput.current.value);
-            history.push(`${match.url}/${textInput.current.value}`);
-          }}
+        <Formik
+          initialValues={{ username: '' }}
+          onSubmit={({ username }) => history.push(`${match.url}/${username}`)}
         >
-          Search
-        </Button>
+          {({ values, handleSubmit, handleChange }) => (
+            <form onSubmit={handleSubmit}>
+              <Input
+                name="username"
+                placeholder="username"
+                value={values.username}
+                onChange={handleChange}
+              />
+              <Button onClick={handleSubmit}>Search</Button>
+            </form>
+          )}
+        </Formik>
       </Flex>
       <Switch>
         <Route
           path={`${ROUTES.USERNAME}`}
-          render={() => <AllUserInfo username={username} {...history} />}
+          render={({ match }) => (
+            <AllUserInfo username={match.params.username} {...history} />
+          )}
         />
       </Switch>
     </React.Fragment>
   );
 }
 
-const initialState = {
-  username: ''
-};
-
-const enhance = compose(
-  withStateHandlers(initialState, {
-    handleInputChange: ({ username }) => value => ({ username: value })
-  })
-);
-
-export default enhance(App);
+export default App;

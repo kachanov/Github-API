@@ -5,6 +5,7 @@
   "homepage": "http://kachanov.github.io/Github-API/",
   "dependencies": {
     "axios": "^0.18.0",
+    "formik": "^1.5.4",
     "gh-pages": "^2.0.1",
     "history": "latest",
     "hoist-non-react-statics": "^3.3.0",
