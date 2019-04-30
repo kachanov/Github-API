@@ -3,7 +3,7 @@ import { Flex } from 'rebass';
 import { Formik } from 'formik';
 import { Switch, Route } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import AllUserInfo from '../UserInfo/UserInfo';
+import UserInfo from '../UserInfo/UserInfo';
 import { ROUTES } from '../../routes';
 
 const GlobalStyle = createGlobalStyle`
@@ -73,7 +73,7 @@ function App({ history, match }) {
         <Route
           path={`${ROUTES.USERNAME}`}
           render={({ match }) => (
-            <AllUserInfo username={match.params.username} {...history} />
+            <UserInfo username={match.params.username}/>
           )}
         />
       </Switch>
