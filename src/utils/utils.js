@@ -22,3 +22,6 @@ export function shallowEqual(objectA, objectB) {
 export function isPromise(object = {}) {
   return object !== null && isFunction(object.then);
 }
+
+
+export const formatDate = date => new Date(date).toLocaleDateString();

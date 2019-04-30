@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 export const Text = styled.p`
   font-family: 'Menlo';
   font-size: 24px;

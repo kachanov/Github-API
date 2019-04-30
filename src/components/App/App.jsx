@@ -3,10 +3,8 @@ import { Flex } from 'rebass';
 import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle } from 'styled-components';
-
 import AllUserInfo from '../AllUserInfo/AllUserInfo';
 import { ROUTES } from '../../routes';
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -48,9 +46,10 @@ const Button = styled.button`
   background-color: #daf3a9;
 `;
 
-function MainComponent({ handleInputChange, history, username, match }) {
+function App({ handleInputChange, history, username, match }) {
   const textInput = React.createRef();
 
+  // @todo Add formik
   function handleEnter(event) {
     if (event.keyCode === 13) {
       handleInputChange(textInput.current.value);
@@ -103,4 +102,4 @@ const enhance = compose(
   })
 );
 
-export default enhance(MainComponent);
+export default enhance(App);

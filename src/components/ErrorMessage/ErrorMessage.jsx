@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Text } from '../UserInfo/UserInfo';
-
 
 const ErrorContainer = styled.div`
   margin: auto;

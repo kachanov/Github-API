@@ -1,31 +1,32 @@
 import React from 'react';
 import { Flex } from 'rebass';
 import { compose, branch, renderComponent } from 'recompose';
-
 import Avatar from '../Avatar/Avatar';
 import Spinner from '../Spinner/Spinner';
 import UserInfo from '../UserInfo/UserInfo';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
-import { withRequest } from '../../utils';
+import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
 
-
-function AllUserInfo({ data, error }) {
+function AllUserInfo({
+  data: { avatar_url, name, location, created_at, login },
+  error
+}) {
   if (error) {
     return ErrorMessage;
   }
 
   return (
-    <Flex justifyContent='center'>
-      <Avatar avatarURL={data.avatar_url} />
-      <Flex flexDirection='column'>
+    <Flex justifyContent="center">
+      <Avatar avatarURL={avatar_url} />
+      <Flex flexDirection="column">
         <UserInfo
-          username={data.name}
-          location={data.location}
-          createdAt={new Date(data.created_at).toLocaleDateString()}
+          username={name}
+          location={location}
+          createdAt={formatDate(created_at)}
         />
-        <RepositoriesList username={data.login} />
+        <RepositoriesList username={login} />
       </Flex>
     </Flex>
   );
