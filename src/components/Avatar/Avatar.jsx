@@ -11,7 +11,7 @@ const Image = styled.img`
 `;
 
 function Avatar({ avatarURL }) {
-  return <Image src={avatarURL} alt='avatar' />;
+  return <Image src={avatarURL} alt="avatar" />;
 }
 
 export default Avatar;

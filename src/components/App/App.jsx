@@ -3,7 +3,7 @@ import { Flex } from 'rebass';
 import { Switch, Route } from 'react-router-dom';
 import { withStateHandlers, compose } from 'recompose';
 import styled, { createGlobalStyle } from 'styled-components';
-import AllUserInfo from '../AllUserInfo/AllUserInfo';
+import AllUserInfo from '../UserInfo/UserInfo';
 import { ROUTES } from '../../routes';
 
 const GlobalStyle = createGlobalStyle`
@@ -61,10 +61,10 @@ function App({ handleInputChange, history, username, match }) {
     <React.Fragment>
       <GlobalStyle />
       <Heading>Github API Example</Heading>
-      <Flex justifyContent='center'>
+      <Flex justifyContent="center">
         <Input
-          placeholder='username'
-          spellcheck='false'
+          placeholder="username"
+          spellcheck="false"
           ref={textInput}
           onKeyUp={handleEnter}
         />
@@ -80,12 +80,7 @@ function App({ handleInputChange, history, username, match }) {
       <Switch>
         <Route
           path={`${ROUTES.USERNAME}`}
-          render={() => (
-            <AllUserInfo
-              username={username}
-              {...history}
-            />
-          )}
+          render={() => <AllUserInfo username={username} {...history} />}
         />
       </Switch>
     </React.Fragment>
