@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import createHashHistory from 'history/createHashHistory';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
-
 import MainComponent from './components/App/App';
-
 
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
 
