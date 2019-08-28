@@ -1,4 +1,3 @@
-import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const spinning = keyframes`
@@ -24,4 +23,4 @@ const Spinner = styled.div`
   animation: ${spinning} 1.1s infinite linear;
 `;
 
-export default Spinner;
+export { Spinner }
