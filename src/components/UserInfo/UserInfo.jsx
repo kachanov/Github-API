@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
 import { Avatar } from '../UI';
 import Spinner from '../Spinner/Spinner';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ErrorMessage } from '../UI';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
 import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
@@ -24,7 +24,10 @@ const Container = styled.div`
 
 function UserInfo({ data, error }) {
   if (error) {
-    return <ErrorMessage />;
+    return <ErrorMessage>
+      <Text>Error</Text>
+      <Text>Could not find such user. Please check entered username.</Text>
+    </ErrorMessage>;
   }
 
   return (
