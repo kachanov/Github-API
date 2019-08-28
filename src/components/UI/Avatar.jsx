@@ -14,4 +14,4 @@ function Avatar({ avatarURL }) {
   return <Image src={avatarURL} alt='avatar' />;
 }
 
-export default Avatar;
+export { Avatar }

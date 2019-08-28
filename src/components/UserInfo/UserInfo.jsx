@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex } from 'rebass';
 import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
-import Avatar from '../Avatar/Avatar';
+import { Avatar } from '../UI';
 import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
