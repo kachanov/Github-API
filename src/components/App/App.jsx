@@ -1,10 +1,10 @@
-import React from 'react';
-import { Flex } from 'rebass';
-import { Formik } from 'formik';
+import React, { useCallback } from 'react';
+import { Formik, Field } from 'formik';
 import { Switch, Route } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import UserInfo from '../UserInfo/UserInfo';
 import { ROUTES } from '../../routes';
+import { Heading, Button, InputField } from '../UI';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,69 +12,39 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Heading = styled.h1`
-  text-align: center;
-  font-family: 'Menlo';
-  color: #0f8a19;
-`;
-
-const Input = styled.input`
-  width: 200px;
-  height: 30px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 3px;
-  background: #daf3a9;
-  font-family: 'Menlo';
-  font-size: 16px;
-  font-weight: bold;
-
-  &:focus {
-    outline: none;
-  }
-`;
-
-const Button = styled.button`
-  width: 100px;
-  height: 32px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 3px;
-  background-color: #daf3a9;
-  font-family: 'Menlo';
-  font-weight: bold;
-  font-size: 16px;
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 function App({ history, match }) {
+  const handleSubmit = useCallback(
+    ({ username }) => history.push(`${match.url}/${username}`),
+    [history, match.url],
+  );
+
   return (
     <React.Fragment>
       <GlobalStyle />
       <Heading>Github API Example</Heading>
-      <Flex justifyContent='center'>
-        <Formik
-          initialValues={{ username: '' }}
-          onSubmit={({ username }) => history.push(`${match.url}/${username}`)}
-        >
-          {({ values, handleSubmit, handleChange }) => (
-            <form onSubmit={handleSubmit}>
-              <Input
-                name='username'
-                placeholder='username'
-                value={values.username}
-                onChange={handleChange}
+      <InputContainer>
+        <Formik initialValues={{ username: '' }} onSubmit={handleSubmit}>
+          {(props) => (
+            <form onSubmit={props.handleSubmit}>
+              <Field
+                name="username"
+                component={InputField}
+                placeholder="Enter username"
               />
-              <Button onClick={handleSubmit}>Search</Button>
+              <Button onClick={props.handleSubmit}>Search</Button>
             </form>
           )}
         </Formik>
-      </Flex>
+      </InputContainer>
       <Switch>
         <Route
           path={`${ROUTES.USERNAME}`}
-          render={({ match }) => (
-            <UserInfo username={match.params.username}/>
-          )}
+          render={({ match: { params: { username } } }) => <UserInfo username={username} />}
         />
       </Switch>
     </React.Fragment>
