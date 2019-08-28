@@ -2,18 +2,10 @@ import React from 'react';
 import { Flex } from 'rebass';
 import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
-import { Avatar } from '../UI';
-import { Spinner } from '../UI';
-import { ErrorMessage } from '../UI';
+import { Avatar, Spinner, ErrorMessage, Text } from '../UI';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
 import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
-
-export const Text = styled.p`
-  font-family: 'Menlo';
-  font-size: 24px;
-  text-align: center;
-`;
 
 const Container = styled.div`
   margin-top: 50px;
