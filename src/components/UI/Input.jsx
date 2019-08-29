@@ -18,14 +18,7 @@ const Input = styled.input`
 `;
 
 function InputField({ form, field, ...props }) {
-  return (
-    <div>
-      <Input
-        {...field}
-        {...props}
-      />
-    </div>
-  )
+  return <Input {...field} {...props} />;
 }
 
 export { Input, InputField }
