@@ -1,17 +1,19 @@
 import React from 'react';
-import { Flex } from 'rebass';
 import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
-import { Avatar, Spinner, ErrorMessage, Text } from '../UI';
+import { Avatar, Spinner, ErrorMessage, Text, Paper } from '../UI';
 import RepositoriesList from '../RepositoriesList/RepositoriesList';
 import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledPaper = styled(Paper)`
   margin-top: 50px;
   padding: 10px;
-  background-color: #daf3a9;
-  box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
 `;
 
 function UserInfo({ data, error }) {
@@ -23,17 +25,17 @@ function UserInfo({ data, error }) {
   }
 
   return (
-    <Flex justifyContent='center'>
+    <Container>
       <Avatar avatarURL={data.avatar_url} />
-      <Flex flexDirection='column'>
-        <Container>
+      <div>
+        <StyledPaper>
           <Text>Name: {data.name}</Text>
           <Text>Location: {data.location ? data.location : 'Unknown'}</Text>
           <Text>Created at: {formatDate(data.created_at)}</Text>
-        </Container>
+        </StyledPaper>
         <RepositoriesList username={data.login} />
-      </Flex>
-    </Flex>
+      </div>
+    </Container>
   );
 }
 

@@ -6,3 +6,4 @@ export { ErrorMessage } from './ErrorMessage';
 export { Spinner } from './Spinner';
 export { List, ListItem } from './List';
 export { Text } from './Text';
+export { Paper } from './Paper';
