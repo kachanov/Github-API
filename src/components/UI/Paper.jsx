@@ -7,4 +7,4 @@ const Paper = styled.div`
   box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
 `;
 
-export { Paper }
+export { Paper };

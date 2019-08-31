@@ -20,4 +20,4 @@ const ListItem = styled.li`
   }
 `;
 
-export { List, ListItem }
+export { List, ListItem };

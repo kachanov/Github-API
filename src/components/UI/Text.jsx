@@ -6,4 +6,4 @@ const Text = styled.p`
   text-align: center;
 `;
 
-export { Text }
+export { Text };

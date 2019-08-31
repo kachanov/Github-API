@@ -21,4 +21,4 @@ function InputField({ form, field, ...props }) {
   return <Input {...field} {...props} />;
 }
 
-export { Input, InputField }
+export { Input, InputField };

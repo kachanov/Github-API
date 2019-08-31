@@ -11,7 +11,7 @@ const defaultProps = [
   'onRejected'
 ];
 
-const getRequestProps = props => omit(props, Object.keys(defaultProps));
+const getRequestProps = (props) => omit(props, Object.keys(defaultProps));
 
 const defaultOptions = {
   debounce: () => false,

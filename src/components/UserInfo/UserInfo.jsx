@@ -18,10 +18,12 @@ const StyledPaper = styled(Paper)`
 
 function UserInfo({ data, error }) {
   if (error) {
-    return <ErrorMessage>
-      <Text>Error</Text>
-      <Text>Could not find such user. Please check entered username.</Text>
-    </ErrorMessage>;
+    return (
+      <ErrorMessage>
+        <Text>Error</Text>
+        <Text>Could not find such user. Please check entered username.</Text>
+      </ErrorMessage>
+    );
   }
 
   return (
@@ -41,8 +43,7 @@ function UserInfo({ data, error }) {
 
 const enhance = compose(
   withRequest(({ username }) => fetchUser(username), {
-    shouldDataUpdate: (prevProps, props) =>
-      prevProps.username !== props.username
+    shouldDataUpdate: (prevProps, props) => prevProps.username !== props.username
   }),
   branch(({ isLoading }) => isLoading, renderComponent(Spinner))
 );

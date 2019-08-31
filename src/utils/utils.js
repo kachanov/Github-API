@@ -11,15 +11,11 @@ export function shallowEqual(objectA, objectB) {
     }
   }
 
-  if (Object.keys(objectA).length !== Object.keys(objectB).length) {
-    return false;
-  }
-
-  return true;
+  return Object.keys(objectA).length === Object.keys(objectB).length;
 }
 
 export function isPromise(object = {}) {
   return object !== null && isFunction(object.then);
 }
 
-export const formatDate = date => new Date(date).toLocaleDateString();
+export const formatDate = (date) => new Date(date).toLocaleDateString();

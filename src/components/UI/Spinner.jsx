@@ -23,4 +23,4 @@ const Spinner = styled.div`
   animation: ${spinning} 1.1s infinite linear;
 `;
 
-export { Spinner }
+export { Spinner };

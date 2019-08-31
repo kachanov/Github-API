@@ -6,4 +6,4 @@ const Heading = styled.h1`
   color: #0f8a19;
 `;
 
-export { Heading }
+export { Heading };
