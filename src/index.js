@@ -1,25 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createHashHistory from 'history/createHashHistory';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
-import MainComponent from './components/App/App';
-
-const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
-
-const Root = document.getElementById('root');
-
-if (Root === null) {
-  throw new Error('Error');
-}
+import App from './components/App/App';
 
 ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL} history={hashHistory}>
+  <BrowserRouter>
     <Switch>
-      <Route exact path="/">
-        <Redirect to="/home" />
-      </Route>
-      <Route path="/home" component={MainComponent} />
+      <Redirect replace exact from="/" to="/home" />
+      <Route path="/home" component={App} />
     </Switch>
   </BrowserRouter>,
-  Root
+  document.getElementById('root')
 );
