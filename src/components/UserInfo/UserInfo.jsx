@@ -42,9 +42,16 @@ function UserInfo({ data, error }) {
 }
 
 const enhance = compose(
-  withRequest(({ username }) => fetchUser(username), {
-    shouldDataUpdate: (prevProps, props) => prevProps.username !== props.username
-  }),
+  withRequest(
+    ({
+      match: {
+        params: { username }
+      }
+    }) => fetchUser(username),
+    {
+      shouldDataUpdate: (prevProps, props) => prevProps.username !== props.username
+    }
+  ),
   branch(({ isLoading }) => isLoading, renderComponent(Spinner))
 );
 
