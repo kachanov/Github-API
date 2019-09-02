@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="adc136f1-2df8-4055-90b2-f62eec6dc460" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserInfo/UserInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInfo/UserInfo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/App/App.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-170">
-              <caret line="30" column="8" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+            <state relative-caret-position="204">
+              <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -36,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/UserInfo/UserInfo.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-289">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+            <state relative-caret-position="59">
+              <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -54,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -124,7 +122,6 @@
         <option value="$PROJECT_DIR$/src/components/UI/ErrorMessage.jsx" />
         <option value="$PROJECT_DIR$/src/components/UI/index.js" />
         <option value="$PROJECT_DIR$/src/api.js" />
-        <option value="$PROJECT_DIR$/src/routes.js" />
         <option value="$PROJECT_DIR$/src/utils/withRequest.js" />
         <option value="$PROJECT_DIR$/src/utils/utils.js" />
         <option value="$PROJECT_DIR$/src/utils/index.js" />
@@ -138,9 +135,10 @@
         <option value="$PROJECT_DIR$/src/components/UI/Spinner.jsx" />
         <option value="$PROJECT_DIR$/src/components/UI/Text.jsx" />
         <option value="$PROJECT_DIR$/.eslintrc.js" />
-        <option value="$PROJECT_DIR$/src/components/App/App.jsx" />
         <option value="$PROJECT_DIR$/src/components/UserInfo/UserInfo.jsx" />
         <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/routes.js" />
+        <option value="$PROJECT_DIR$/src/components/App/App.jsx" />
       </list>
     </option>
   </component>
@@ -248,7 +246,7 @@
       <workItem from="1556647766829" duration="5124000" />
       <workItem from="1559392574157" duration="53000" />
       <workItem from="1567021197485" duration="4619000" />
-      <workItem from="1567370235632" duration="2210000" />
+      <workItem from="1567370235632" duration="3916000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: Input, Heading and Button moved into UI components folder, add Field with Formik bindings, remove rebass/grid usage">
       <created>1567026284131</created>
@@ -320,11 +318,25 @@
       <option name="project" value="LOCAL" />
       <updated>1567260298053</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactor: input moved into single route">
+      <created>1567399036015</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1567399036015</updated>
+    </task>
+    <task id="LOCAL-00012" summary="refactor: remove hashHistory, basename, history, fix Redirect">
+      <created>1567459186091</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1567459186091</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22632000" />
+    <option name="totallyTimeSpent" value="24338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -405,7 +417,9 @@
     <MESSAGE value="refactor: Paper moved into UI components folder" />
     <MESSAGE value="refactor: add min-width &amp; min-height for Paper" />
     <MESSAGE value="refactor: configure eslint, disabled unnecessary rules" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: configure eslint, disabled unnecessary rules" />
+    <MESSAGE value="refactor: input moved into single route" />
+    <MESSAGE value="refactor: remove hashHistory, basename, history, fix Redirect" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: remove hashHistory, basename, history, fix Redirect" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -560,6 +574,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -569,8 +593,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/UserInfo/UserInfo.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+        <state relative-caret-position="59">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -579,20 +603,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/App/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="30" column="8" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+        <state relative-caret-position="204">
+          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
