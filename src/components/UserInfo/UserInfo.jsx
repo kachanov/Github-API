@@ -16,7 +16,7 @@ const StyledPaper = styled(Paper)`
   padding: 10px;
 `;
 
-function UserInfo({ data, error }) {
+function InnerUserInfo({ data, error }) {
   if (error) {
     return (
       <ErrorMessage>
@@ -56,4 +56,6 @@ const enhance = compose(
   branch(({ isLoading }) => isLoading, renderComponent(Spinner))
 );
 
-export default enhance(UserInfo);
+const UserInfo = enhance(InnerUserInfo);
+
+export { UserInfo };
