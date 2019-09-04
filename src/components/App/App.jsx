@@ -17,12 +17,34 @@ const InputContainer = styled.div`
   justify-content: center;
 `;
 
-function App({ history, match }) {
+function Input({ history, match }) {
   const handleSubmit = useCallback(
     ({ username }) => history.push(`${match.url}/${username}`),
     [history, match.url]
   );
 
+  return (
+    <InputContainer>
+      <Formik
+        initialValues={{ username: '' }}
+        onSubmit={handleSubmit}
+      >
+        {(props) => (
+          <form onSubmit={props.handleSubmit}>
+            <Field
+              name="username"
+              component={InputField}
+              placeholder="Enter username"
+            />
+            <Button onClick={props.handleSubmit}>Search</Button>
+          </form>
+        )}
+      </Formik>
+    </InputContainer>
+  );
+}
+
+function App() {
   return (
     <React.Fragment>
       <GlobalStyle />
@@ -31,25 +53,7 @@ function App({ history, match }) {
         <React.Fragment>
           <Route
             path={ROUTES.HOME}
-            render={() => (
-              <InputContainer>
-                <Formik
-                  initialValues={{ username: '' }}
-                  onSubmit={handleSubmit}
-                >
-                  {(props) => (
-                    <form onSubmit={props.handleSubmit}>
-                      <Field
-                        name="username"
-                        component={InputField}
-                        placeholder="Enter username"
-                      />
-                      <Button onClick={props.handleSubmit}>Search</Button>
-                    </form>
-                  )}
-                </Formik>
-              </InputContainer>
-            )}
+            component={Input}
           />
           <Route
             path={ROUTES.USERNAME}

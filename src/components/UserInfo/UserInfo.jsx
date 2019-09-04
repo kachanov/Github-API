@@ -49,7 +49,8 @@ const enhance = compose(
       }
     }) => fetchUser(username),
     {
-      shouldDataUpdate: (prevProps, props) => prevProps.username !== props.username
+      shouldDataUpdate: (prevProps, props) =>
+        prevProps.match.params.username !== props.match.params.username
     }
   ),
   branch(({ isLoading }) => isLoading, renderComponent(Spinner))
