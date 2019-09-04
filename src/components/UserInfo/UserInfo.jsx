@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
+import { RepositoriesList } from '../RepositoriesList/RepositoriesList';
 import { Avatar, Spinner, ErrorMessage, Text, Paper } from '../UI';
-import RepositoriesList from '../RepositoriesList/RepositoriesList';
 import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
 

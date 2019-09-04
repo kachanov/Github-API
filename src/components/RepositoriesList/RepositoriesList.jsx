@@ -1,10 +1,10 @@
 import React from 'react';
 import { branch, compose, renderNothing } from 'recompose';
+import { List, ListItem } from '../UI';
 import { withRequest } from '../../utils';
 import { fetchUserRepos } from '../../api';
-import { List, ListItem } from '../UI';
 
-function RepositoriesList({ data: repositories }) {
+function InnerRepositoriesList({ data: repositories }) {
   return (
     <List>
       {repositories.map(({ id, name }) => (
@@ -19,4 +19,6 @@ const enhance = compose(
   branch(({ isLoading }) => isLoading, renderNothing)
 );
 
-export default enhance(RepositoriesList);
+const RepositoriesList = enhance(InnerRepositoriesList);
+
+export { RepositoriesList };
