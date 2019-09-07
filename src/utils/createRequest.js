@@ -1,6 +1,5 @@
 import React from 'react';
 import omit from 'lodash/omit';
-
 import { shallowEqual, isPromise } from './utils';
 
 const defaultProps = [
@@ -11,7 +10,7 @@ const defaultProps = [
   'onRejected'
 ];
 
-const getRequestProps = props => omit(props, Object.keys(defaultProps));
+const getRequestProps = (props) => omit(props, Object.keys(defaultProps));
 
 const defaultOptions = {
   debounce: () => false,

@@ -1,25 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createHashHistory from 'history/createHashHistory';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
-import MainComponent from './components/App/App';
+import { createGlobalStyle } from 'styled-components';
+import App from './components/App/App';
+import { ROUTES } from './routes';
 
-const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
-
-const Root = document.getElementById('root');
-
-if (Root === null) {
-  throw new Error('Error');
-}
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #C0E870;
+  }
+`;
 
 ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL} history={hashHistory}>
-    <Switch>
-      <Route exact path='/'>
-        <Redirect to='/home' />
-      </Route>
-      <Route path='/home' component={MainComponent} />
-    </Switch>
+  <BrowserRouter>
+    <React.Fragment>
+      <GlobalStyle />
+      <Switch>
+        <Redirect replace exact from="/" to={ROUTES.HOME} />
+        <Route path={ROUTES.HOME} component={App} />
+      </Switch>
+    </React.Fragment>
   </BrowserRouter>,
-  Root
+  document.getElementById('root')
 );

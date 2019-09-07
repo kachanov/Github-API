@@ -1,53 +1,61 @@
 import React from 'react';
-import { Flex } from 'rebass';
 import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
-import Avatar from '../Avatar/Avatar';
-import Spinner from '../Spinner/Spinner';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import RepositoriesList from '../RepositoriesList/RepositoriesList';
+import { RepositoriesList } from '../RepositoriesList/RepositoriesList';
+import { Avatar, Spinner, ErrorMessage, Text, Paper } from '../UI';
 import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
 
-export const Text = styled.p`
-  font-family: 'Menlo';
-  font-size: 24px;
-  text-align: center;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
-const Container = styled.div`
+const StyledPaper = styled(Paper)`
   margin-top: 50px;
   padding: 10px;
-  background-color: #daf3a9;
-  box-shadow: 10px 10px 25px -8px rgba(0, 0, 0, 0.5);
 `;
 
-function UserInfo({ data, error }) {
+function InnerUserInfo({ data, error }) {
   if (error) {
-    return <ErrorMessage />;
+    return (
+      <ErrorMessage>
+        <Text>Error</Text>
+        <Text>Could not find such user. Please check entered username.</Text>
+      </ErrorMessage>
+    );
   }
 
   return (
-    <Flex justifyContent='center'>
+    <Container>
       <Avatar avatarURL={data.avatar_url} />
-      <Flex flexDirection='column'>
-        <Container>
+      <div>
+        <StyledPaper>
           <Text>Name: {data.name}</Text>
           <Text>Location: {data.location ? data.location : 'Unknown'}</Text>
           <Text>Created at: {formatDate(data.created_at)}</Text>
-        </Container>
+        </StyledPaper>
         <RepositoriesList username={data.login} />
-      </Flex>
-    </Flex>
+      </div>
+    </Container>
   );
 }
 
 const enhance = compose(
-  withRequest(({ username }) => fetchUser(username), {
-    shouldDataUpdate: (prevProps, props) =>
-      prevProps.username !== props.username
-  }),
+  withRequest(
+    ({
+      match: {
+        params: { username }
+      }
+    }) => fetchUser(username),
+    {
+      shouldDataUpdate: (prevProps, props) =>
+        prevProps.match.params.username !== props.match.params.username
+    }
+  ),
   branch(({ isLoading }) => isLoading, renderComponent(Spinner))
 );
 
-export default enhance(UserInfo);
+const UserInfo = enhance(InnerUserInfo);
+
+export { UserInfo };
