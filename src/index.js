@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <React.Fragment>
       <GlobalStyle />
       <Switch>
