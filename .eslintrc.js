@@ -36,6 +36,8 @@ module.exports = {
     "react/jsx-closing-tag-location": 'off',
     "react/jsx-one-expression-per-line": 'off',
     "react/jsx-props-no-spreading": 'off',
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "jsx-quotes": ["error", "prefer-single"],
+    "arrow-parens": "off"
   },
 };
