@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import createHashHistory from 'history/createHashHistory';
-import App from './components/App/App';
+import { App } from './components/App';
 import { ROUTES } from './routes';
 
 const GlobalStyle = createGlobalStyle`
@@ -15,14 +15,14 @@ const GlobalStyle = createGlobalStyle`
 const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
 
 ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL} history={hashHistory}>
-    <React.Fragment>
-      <GlobalStyle />
+  <React.Fragment>
+    <GlobalStyle />
+    <BrowserRouter history={hashHistory}>
       <Switch>
-        <Redirect replace exact from="/" to={ROUTES.HOME} />
+        <Redirect exact from="/" to={ROUTES.HOME} />
         <Route path={ROUTES.HOME} component={App} />
       </Switch>
-    </React.Fragment>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </React.Fragment>,
   document.getElementById('root')
 );
