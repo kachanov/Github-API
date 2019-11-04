@@ -16,7 +16,8 @@ const StyledPaper = styled(Paper)`
   padding: 10px;
 `;
 
-function InnerUserInfo({ data, error }) {
+function InnerUserInfo({ data, error, ...other }) {
+  console.log(other);
   if (error) {
     return (
       <ErrorMessage>

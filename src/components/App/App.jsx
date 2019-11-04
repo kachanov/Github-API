@@ -1,17 +1,43 @@
-import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
+import { Field, Formik } from 'formik';
 import { UserInfo } from '../UserInfo/UserInfo';
-import { Input } from './Input';
 import { ROUTES } from '../../routes';
+import { Button, Heading, InputField } from '../UI';
 
-function App() {
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+function App({ history, match }) {
+  const handleSubmit = useCallback(
+    ({ username }) => history.push(`${match.url}/${username}`),
+    [history, match.url]
+  );
+
   return (
-    <Router>
-      <React.Fragment>
-        <Route path={ROUTES.HOME} component={Input} />
+    <React.Fragment>
+      <Heading>Github API Example</Heading>
+      <InputContainer>
+        <Formik initialValues={{ username: '' }} onSubmit={handleSubmit}>
+          {(props) => (
+            <form onSubmit={props.handleSubmit}>
+              <Field
+                name="username"
+                component={InputField}
+                placeholder="Enter username"
+              />
+              <Button onClick={props.handleSubmit}>Search</Button>
+            </form>
+          )}
+        </Formik>
+      </InputContainer>
+      <Switch>
         <Route path={ROUTES.USERNAME} component={UserInfo} />
-      </React.Fragment>
-    </Router>
+      </Switch>
+    </React.Fragment>
   );
 }
 

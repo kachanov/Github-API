@@ -34,5 +34,3 @@ function Input({ history, match }) {
     </React.Fragment>
   );
 }
-
-export { Input };
