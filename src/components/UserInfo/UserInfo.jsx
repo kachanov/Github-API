@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { compose, branch, renderComponent } from 'recompose';
-import { RepositoriesList } from '../RepositoriesList/RepositoriesList';
-import { Avatar, Spinner, ErrorMessage, Text, Paper } from '../UI';
+import { RepositoriesList } from '../RepositoriesList';
+import { Text, Paper, Avatar, Spinner, ErrorMessage } from '../UI';
 import { withRequest, formatDate } from '../../utils';
 import { fetchUser } from '../../api';
 
@@ -16,8 +16,12 @@ const StyledPaper = styled(Paper)`
   padding: 10px;
 `;
 
-function InnerUserInfo({ data, error, ...other }) {
-  console.log(other);
+const DataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+function InnerUserInfo({ data, error }) {
   if (error) {
     return (
       <ErrorMessage>
@@ -30,14 +34,14 @@ function InnerUserInfo({ data, error, ...other }) {
   return (
     <Container>
       <Avatar avatarURL={data.avatar_url} />
-      <div>
+      <DataContainer>
         <StyledPaper>
           <Text>Name: {data.name}</Text>
-          <Text>Location: {data.location ? data.location : 'Unknown'}</Text>
+          <Text>Location: {data.location || 'Unknown'}</Text>
           <Text>Created at: {formatDate(data.created_at)}</Text>
         </StyledPaper>
         <RepositoriesList username={data.login} />
-      </div>
+      </DataContainer>
     </Container>
   );
 }
