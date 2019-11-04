@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Field, Formik } from 'formik';
-import { UserInfo } from '../UserInfo/UserInfo';
+import { UserInfo } from '../UserInfo';
 import { ROUTES } from '../../routes';
 import { Button, Heading, InputField } from '../UI';
 
@@ -11,7 +11,7 @@ const InputContainer = styled.div`
   justify-content: center;
 `;
 
-function App({ history, match }) {
+function App({ match, history }) {
   const handleSubmit = useCallback(
     ({ username }) => history.push(`${match.url}/${username}`),
     [history, match.url]
@@ -22,14 +22,14 @@ function App({ history, match }) {
       <Heading>Github API Example</Heading>
       <InputContainer>
         <Formik initialValues={{ username: '' }} onSubmit={handleSubmit}>
-          {(props) => (
+          {props => (
             <form onSubmit={props.handleSubmit}>
               <Field
-                name="username"
+                name='username'
                 component={InputField}
-                placeholder="Enter username"
+                placeholder='Enter username'
               />
-              <Button onClick={props.handleSubmit}>Search</Button>
+              <Button type='submit' onClick={props.handleSubmit}>Search</Button>
             </form>
           )}
         </Formik>
@@ -41,4 +41,4 @@ function App({ history, match }) {
   );
 }
 
-export default App;
+export { App };
