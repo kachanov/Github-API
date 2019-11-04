@@ -17,9 +17,9 @@ const hashHistory = createHashHistory({ basename: process.env.PUBLIC_URL });
 ReactDOM.render(
   <React.Fragment>
     <GlobalStyle />
-    <BrowserRouter history={hashHistory}>
+    <BrowserRouter basename={process.env.PUBLIC_URL} history={hashHistory}>
       <Switch>
-        <Redirect exact from="/" to={ROUTES.HOME} />
+        <Redirect replace exact from='/' to={ROUTES.HOME} />
         <Route path={ROUTES.HOME} component={App} />
       </Switch>
     </BrowserRouter>
